@@ -7,12 +7,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.support.v4.view.MenuItem;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class LeftFragment extends ListFragment {
-    boolean mHasDetailsFrame;
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		return super.onOptionsItemSelected(item);
+	}
+	
+    @Override
+	public void onCreateOptionsMenu(android.support.v4.view.Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.fragment_crime_list, menu);
+	}
+
+	boolean mHasDetailsFrame;
     int mPositionChecked = 0;
     int mPositionShown = -1;
 
@@ -55,7 +71,8 @@ public class LeftFragment extends ListFragment {
         showDetails(position);
     }
 
-    /**
+
+	/**
      * Helper function to show the details of a selected item, either by
      * displaying a fragment in-place in the current UI, or starting a
      * whole new activity in which it is displayed.
@@ -93,4 +110,5 @@ public class LeftFragment extends ListFragment {
             startActivity(intent);
         }
     }
+    
 }
