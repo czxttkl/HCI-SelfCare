@@ -1,6 +1,7 @@
 package com.actionbarsherlock.sample.shakespeare.activities;
 
-import io.github.czxttkl.game.JoinActivity;
+import io.github.czxttkl.game.progress.ProgressActivity;
+import io.github.czxttkl.game.progress.RightProgressFragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MenuItem;
-import com.actionbarsherlock.sample.shakespeare.fragments.RightFragment;
 
 public class DetailsActivity extends FragmentActivity {
     @Override
@@ -25,7 +25,7 @@ public class DetailsActivity extends FragmentActivity {
 
         if (savedInstanceState == null) {
             // During initial setup, plug in the details fragment.
-            RightFragment details = new RightFragment();
+            RightProgressFragment details = new RightProgressFragment();
             details.setArguments(getIntent().getExtras());
             
             getSupportFragmentManager()
@@ -40,7 +40,7 @@ public class DetailsActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				Intent intent = new Intent(this, JoinActivity.class);
+				Intent intent = new Intent(this, ProgressActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				

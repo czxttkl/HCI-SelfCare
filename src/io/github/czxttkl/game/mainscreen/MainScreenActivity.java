@@ -1,4 +1,9 @@
-package io.github.czxttkl.game;
+package io.github.czxttkl.game.mainscreen;
+
+import io.github.czxttkl.game.Challenge;
+import io.github.czxttkl.game.ChallengeActivity;
+import io.github.czxttkl.game.ChallengeLab;
+import io.github.czxttkl.game.progress.ProgressActivity;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 
@@ -26,9 +31,7 @@ public class MainScreenActivity extends Activity {
 	}
 
 	public void onClickJoin(View v) {
-		Intent i = new Intent();
-		i.setComponent(new ComponentName(this, JoinActivity.class));
-		startActivity(i);
+	
 	}
 
 	public void onClickQuit(View v) {
@@ -36,6 +39,8 @@ public class MainScreenActivity extends Activity {
 	}
 
 	public void onClickProgress(View v) {
-
+		Intent i = new Intent();
+		i.setComponent(new ComponentName(this, ProgressActivity.class));
+		startActivity(i);
 	}
 }

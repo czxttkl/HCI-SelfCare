@@ -23,7 +23,7 @@
             android:id="@+id/fragment_titles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="com.actionbarsherlock.sample.shakespeare.fragments.LeftFragment" />
+            class="io.github.czxttkl.game.progress.LeftProgressFragment" />
     </LinearLayout>
 
     <FrameLayout

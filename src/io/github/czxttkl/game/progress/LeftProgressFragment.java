@@ -1,4 +1,4 @@
-package com.actionbarsherlock.sample.shakespeare.fragments;
+package io.github.czxttkl.game.progress;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.List;
 import io.github.czxttkl.game.Challenge;
 import io.github.czxttkl.game.ChallengeActivity;
 import io.github.czxttkl.game.ChallengeLab;
-import io.github.czxttkl.game.MainScreenActivity;
+import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
@@ -30,7 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-public class LeftFragment extends ListFragment {
+public class LeftProgressFragment extends ListFragment {
 	boolean mHasDetailsFrame;
 	int mPositionChecked = 0;
 	int mPositionShown = -1;
@@ -115,7 +115,7 @@ public class LeftFragment extends ListFragment {
 			if (mPositionShown != mPositionChecked) {
 				// If we are not currently showing a fragment for the new
 				// position, we need to create and install a new one.
-				RightFragment df = RightFragment.newInstance(index);
+				RightProgressFragment df = RightProgressFragment.newInstance(index);
 
 				// Execute a transaction, replacing any existing fragment
 				// with this one inside the frame.

@@ -34,6 +34,6 @@
         android:id="@+id/mainscreen_chart"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        class="io.github.czxttkl.game.MainScreenChartFragment" />
+        class="io.github.czxttkl.game.mainscreen.MainScreenChartFragment" />
 
 </LinearLayout>

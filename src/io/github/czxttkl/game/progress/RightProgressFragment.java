@@ -1,4 +1,4 @@
-package com.actionbarsherlock.sample.shakespeare.fragments;
+package io.github.czxttkl.game.progress;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
@@ -13,17 +13,17 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class RightFragment extends Fragment {
+public class RightProgressFragment extends Fragment {
     /**
      * Create a new instance of DetailsFragment, initialized to
      * show the text at 'index'.
      */
-    public static RightFragment newInstance(int index) {
+    public static RightProgressFragment newInstance(int index) {
         // Supply index input as an argument.
         Bundle args = new Bundle();
         args.putInt("index", index);
         
-        RightFragment f = new RightFragment();
+        RightProgressFragment f = new RightProgressFragment();
         f.setArguments(args);
 
         return f;

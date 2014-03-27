@@ -29,7 +29,7 @@
         android:label="@string/application_label"
         android:theme="@style/Theme.Sherlock.Light" >
         <activity
-            android:name="io.github.czxttkl.game.LoginActivity"
+            android:name="io.github.czxttkl.game.login.LoginActivity"
             android:label="Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="io.github.czxttkl.game.MainScreenActivity"
+            android:name="io.github.czxttkl.game.mainscreen.MainScreenActivity"
             android:label="MainScreen" />
         <activity android:name=".activities.DetailsActivity" />
         <activity
@@ -47,7 +47,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="io.github.czxttkl.game.JoinActivity"
+            android:name="io.github.czxttkl.game.progress.ProgressActivity"
             android:label="Competition List" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

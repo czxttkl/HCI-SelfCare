@@ -1,5 +1,6 @@
-package io.github.czxttkl.game;
+package io.github.czxttkl.game.login;
 
+import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;

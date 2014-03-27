@@ -1,4 +1,4 @@
-package io.github.czxttkl.game;
+package io.github.czxttkl.game.mainscreen;
 
 import java.util.ArrayList;
 import java.util.Date;

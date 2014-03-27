@@ -15,19 +15,26 @@
 -->
 
 <!-- Top-level content view for the layout fragment sample.  This version is
-     for display when not in landscape: we can only fit the list of titles. -->
+     for display when in landscape: we can fit both titles and dialog. -->
 
 
-<FrameLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
 	<fragment
-		class="com.actionbarsherlock.sample.shakespeare.fragments.LeftFragment"
+		class="io.github.czxttkl.game.progress.LeftProgressFragment"
 		android:id="@+id/fragment_titles"
-		android:layout_width="fill_parent"
+		android:layout_weight="1"
+		android:layout_width="0px"
 		android:layout_height="fill_parent" />
 
-</FrameLayout>
-
+	<FrameLayout
+		android:id="@+id/frame_details"
+		android:layout_weight="3"
+		android:layout_width="0px"
+		android:layout_height="fill_parent" />
+    
+</LinearLayout>
