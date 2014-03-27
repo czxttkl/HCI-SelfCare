@@ -52,7 +52,4 @@ public class RightJoinFragment extends Fragment {
         return scroller;
     }
     
-    public void onClickJoin(View v) {
-    	
-    }
 }

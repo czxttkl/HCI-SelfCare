@@ -52,7 +52,4 @@ public class RightProgressFragment extends Fragment {
         return scroller;
     }
     
-    public void onClickUpdate(View v) {
-    	
-    }
 }
