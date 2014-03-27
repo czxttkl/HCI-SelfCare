@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-<FrameLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+    <fragment
+        android:id="@+id/fragment_titles"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        class="io.github.czxttkl.game.join.LeftJoinFragment" />
 
-	<fragment
-		class="io.github.czxttkl.game.join.LeftJoinFragment"
-		android:id="@+id/fragment_titles"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
 
-</FrameLayout>
+        <CheckBox
+            android:id="@+id/filter_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:text="Local" />
+
+        <CheckBox
+            android:id="@+id/filter_physical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_toRightOf="@id/filter_local"
+            android:text="Physical" />
+
+        <CheckBox
+            android:id="@+id/filter_Mental"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_toRightOf="@id/filter_physical"
+            android:text="Mental" />
+
+        <CheckBox
+            android:id="@+id/filter_social"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_toRightOf="@id/filter_Mental"
+            android:text="Social" />
+    </RelativeLayout>
+
+</LinearLayout>
