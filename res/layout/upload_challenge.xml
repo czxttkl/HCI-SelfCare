@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/crime_imageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@android:color/darker_gray"
+                android:cropToPadding="true"
+                android:scaleType="centerInside" />
+
+            <ImageButton
+                android:id="@+id/crime_imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detail" />
+
+    <EditText
+        android:id="@+id/crime_title"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginRight="16dp"
+        android:layout_weight="2"
+        android:inputType="textMultiLine" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/text_date"
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Update At" />
+
+        <Button
+            android:id="@+id/challenge_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/text_date" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/crime_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Update My progress" />
+
+</LinearLayout>
