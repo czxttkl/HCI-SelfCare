@@ -61,6 +61,14 @@
                 android:value="io.github.czxttkl.game.MainScreenActivity" />
         </activity>
         
+         <activity
+            android:name="io.github.czxttkl.game.graph.GraphActivity"
+            android:label="Browse Challenges" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.czxttkl.game.MainScreenActivity" />
+        </activity>
+        
         <activity
             android:name="io.github.czxttkl.game.ChallengeActivity"
             android:label="Challenge" >
