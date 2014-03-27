@@ -31,7 +31,8 @@
         android:largeHeap="true" >
         <activity
             android:name="io.github.czxttkl.game.login.LoginActivity"
-            android:label="CoolCare" >
+            android:label="CoolCare"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,8 +40,10 @@
         </activity>
         <activity
             android:name="io.github.czxttkl.game.mainscreen.MainScreenActivity"
-            android:label="MainScreen" />
+            android:label="MainScreen"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.DetailsActivity" />
+        
         <activity
             android:name="io.github.czxttkl.game.CameraActivity"
             android:label="Camera"
@@ -72,7 +75,8 @@
         
         <activity
             android:name="io.github.czxttkl.game.ChallengeActivity"
-            android:label="Challenge" >
+            android:label="Challenge"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.czxttkl.game.MainScreenActivity" />

@@ -53,7 +53,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/text_title" />
+                    android:layout_toRightOf="@id/text_title"
+                    android:lines="1"
+                    android:singleLine="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -72,7 +74,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/text_location" />
+                    android:layout_toRightOf="@id/text_location"
+                    android:lines="1"
+                    android:singleLine="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -91,7 +95,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/text_freq" />
+                    android:layout_toRightOf="@id/text_freq"
+                    android:lines="1"
+                    android:singleLine="true" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
