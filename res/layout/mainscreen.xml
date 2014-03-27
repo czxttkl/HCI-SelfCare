@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/continue_button"
+        style="@style/buttoninmain"
+        android:onClick="onClickNew"
+        android:text="New" />
+
+    <Button
+        android:id="@+id/new_button"
+        style="@style/buttoninmain"
+        android:onClick="onClickJoin"
+        android:text="Join" />
+
+    <Button
+        android:id="@+id/learn_button"
+        style="@style/buttoninmain"
+        android:onClick="onClickProgress"
+        android:text="Progress" />
+
+    <Button
+        android:id="@+id/learn_button"
+        style="@style/buttoninmain"
+        android:onClick="onClickQuit"
+        android:text="Quit" />
+
+    <fragment
+        android:id="@+id/mainscreen_chart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        class="io.github.czxttkl.game.MainScreenChartFragment" />
+
+</LinearLayout>

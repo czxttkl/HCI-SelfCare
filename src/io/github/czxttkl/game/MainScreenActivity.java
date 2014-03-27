@@ -14,7 +14,7 @@ public class MainScreenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// setTitle(R.string.activity_titles);
-		setContentView(R.layout.main);
+		setContentView(R.layout.mainscreen);
 	}
 
 	public void onClickNew(View v) {

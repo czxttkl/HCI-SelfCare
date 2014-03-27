@@ -18,13 +18,13 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/avatar1" />
+            android:src="@drawable/avatar2" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zhengxing Chen" />
+            android:text="Hope Lin" />
     </LinearLayout>
 
     <View
@@ -54,7 +54,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/event" />
+            android:src="@drawable/event2" />
 
         <TextView
             android:id="@+id/textView2"

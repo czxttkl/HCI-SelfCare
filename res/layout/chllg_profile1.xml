@@ -54,7 +54,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/event" />
+            android:src="@drawable/event1" />
 
         <TextView
             android:id="@+id/textView2"

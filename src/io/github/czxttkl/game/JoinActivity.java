@@ -14,9 +14,4 @@ public class JoinActivity extends FragmentActivity {
        // setTitle(R.string.activity_titles);
         setContentView(R.layout.join);
     }
-//    
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        inflater.inflate(R.menu.fragment_crime_list, menu);
-//    }
 }
