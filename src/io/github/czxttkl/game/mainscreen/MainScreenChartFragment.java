@@ -62,7 +62,7 @@ public class MainScreenChartFragment extends Fragment {
 			r.setLineWidth(5);
 			r.setFillPoints(true);
 		}
-		setChartSettings(renderer, "Weather data", "Month", "Temperature", 0.5, 12.5, 0, 40, Color.LTGRAY, Color.LTGRAY);
+		setChartSettings(renderer, "Your Activeness", "Month", "Temperature", 0.5, 12.5, 0, 40, Color.LTGRAY, Color.LTGRAY);
 
 		renderer.setXLabels(12);
 		renderer.setYLabels(10);
@@ -121,7 +121,7 @@ public class MainScreenChartFragment extends Fragment {
 		
 		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.mainscreen_chart);
 		// layout.removeAllViews();
-		layout.addView(chartView, new LayoutParams(960, LayoutParams.FILL_PARENT));
+		layout.addView(chartView, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 	}
 
 	private XYMultipleSeriesRenderer buildRenderer(int[] colors, PointStyle[] styles) {

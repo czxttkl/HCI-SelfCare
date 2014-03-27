@@ -1,4 +1,4 @@
-package io.github.czxttkl.game.progress;
+package io.github.czxttkl.game.join;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-public class LeftProgressFragment extends ListFragment {
+public class LeftJoinFragment extends ListFragment {
 	boolean mHasDetailsFrame;
 	int mPositionChecked = 0;
 	int mPositionShown = -1;
@@ -115,7 +115,7 @@ public class LeftProgressFragment extends ListFragment {
 			if (mPositionShown != mPositionChecked) {
 				// If we are not currently showing a fragment for the new
 				// position, we need to create and install a new one.
-				RightProgressFragment df = RightProgressFragment.newInstance(index);
+				RightJoinFragment df = RightJoinFragment.newInstance(index);
 
 				// Execute a transaction, replacing any existing fragment
 				// with this one inside the frame.

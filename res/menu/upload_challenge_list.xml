@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/menu_item_new_challenge"
-    android:icon="@android:drawable/ic_menu_add"
-    android:title="New Challenge"
+    android:icon="@drawable/plus_space"
+    android:title="Upload Progress"
     android:showAsAction="ifRoom|withText"/>
 </menu>

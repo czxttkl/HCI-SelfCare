@@ -1,4 +1,4 @@
-package io.github.czxttkl.game.progress;
+package io.github.czxttkl.game.join;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
@@ -13,17 +13,17 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class RightProgressFragment extends Fragment {
+public class RightJoinFragment extends Fragment {
     /**
      * Create a new instance of DetailsFragment, initialized to
      * show the text at 'index'.
      */
-    public static RightProgressFragment newInstance(int index) {
+    public static RightJoinFragment newInstance(int index) {
         // Supply index input as an argument.
         Bundle args = new Bundle();
         args.putInt("index", index);
         
-        RightProgressFragment f = new RightProgressFragment();
+        RightJoinFragment f = new RightJoinFragment();
         f.setArguments(args);
 
         return f;
