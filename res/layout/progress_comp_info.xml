@@ -88,7 +88,7 @@
         android:layout_height="20dp"
         android:src="@drawable/plus_space"
         android:layout_below="@id/start_date_title"
-        android:onClick="onClickJoin"
+        android:onClick="onClickUpdate"
         />
     
     <LinearLayout

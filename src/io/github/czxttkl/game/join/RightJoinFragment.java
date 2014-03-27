@@ -51,4 +51,8 @@ public class RightJoinFragment extends Fragment {
         //text.setText(Shakespeare.DIALOGUE[getArguments().getInt("index", 0)]);
         return scroller;
     }
+    
+    public void onClickJoin(View v) {
+    	
+    }
 }

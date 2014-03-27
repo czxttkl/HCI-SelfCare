@@ -41,7 +41,7 @@ public class RightProgressFragment extends Fragment {
             // the view hierarchy; it would just never be used.
             return null;
         }
-        RelativeLayout mCompInfoView = (RelativeLayout) getActivity().getLayoutInflater().inflate(R.layout.join_comp_info, null);
+        RelativeLayout mCompInfoView = (RelativeLayout) getActivity().getLayoutInflater().inflate(R.layout.progress_comp_info, null);
         ScrollView scroller = new ScrollView(getActivity());
         TextView text = new TextView(getActivity());
         int padding = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getActivity().getResources().getDisplayMetrics());
@@ -50,5 +50,9 @@ public class RightProgressFragment extends Fragment {
         //scroller.addView(text);
         //text.setText(Shakespeare.DIALOGUE[getArguments().getInt("index", 0)]);
         return scroller;
+    }
+    
+    public void onClickUpdate(View v) {
+    	
     }
 }
