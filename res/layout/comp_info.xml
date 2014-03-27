@@ -1,63 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-	
+
     <TextView
         android:id="@+id/freq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      	android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/progress"
-        android:text="Every 3 days"/>
-	
-	<TextView
+        android:layout_marginRight="20dp"
+        android:text="Every 3 days" />
+
+    <TextView
         android:id="@+id/freq_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/progress"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/freq"
-        android:layout_alignTop="@+id/progress"
         android:text="Frequency:"
-        android:textStyle="bold"/>
-	
-	<TextView
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      	android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/start_date_title"
-        android:text="07/15/2014"/>
-	
-	<TextView
+        android:layout_marginRight="20dp"
+        android:text="07/15/2014" />
+
+    <TextView
         android:id="@+id/end_date_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/start_date_title"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/end_date"
-        android:layout_alignTop="@+id/start_date_title"
         android:text="End Date:"
-        android:textStyle="bold"/>
-	
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/start_date_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/progress"
         android:layout_below="@+id/progress"
         android:layout_marginTop="20dp"
-        android:layout_alignLeft="@+id/progress"
-        android:text="Start Date:" 
-        android:textStyle="bold"/>
+        android:text="Start Date:"
+        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="80dp"
         android:layout_height="10dp"
-        android:layout_toRightOf="@+id/progress"
-        android:layout_marginLeft="10dp"
         android:layout_alignTop="@+id/progress"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/progress"
         android:max="100"
         android:progress="50" />
 
@@ -65,28 +66,41 @@
         android:id="@+id/start_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/start_date_title"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/start_date_title"
-        android:layout_alignTop="@+id/start_date_title"
-        android:text="07/15/2013"/>
+        android:text="07/15/2013" />
 
     <TextView
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-   		 android:layout_alignParentLeft="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:text="Progress:" 
-        android:textStyle="bold"/>
-    
-    
-    <include 
-        android:layout_width="wrap_content"
+        android:text="Progress:"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/progress"
         android:layout_below="@+id/start_date_title"
         android:layout_marginTop="20dp"
-        android:layout_alignLeft="@+id/progress"
-        layout="@layout/chllg_profile"/>
+        android:orientation="vertical" >
+
+        <include
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            layout="@layout/chllg_profile1" />
+
+        <include
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/chllg_profile2" 
+            android:layout_marginBottom="30dp"/>
+    </LinearLayout>
+
 </RelativeLayout>
