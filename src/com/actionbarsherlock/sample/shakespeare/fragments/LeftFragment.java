@@ -1,5 +1,9 @@
 package com.actionbarsherlock.sample.shakespeare.fragments;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import io.github.czxttkl.game.Challenge;
 import io.github.czxttkl.game.ChallengeActivity;
 import io.github.czxttkl.game.ChallengeLab;
@@ -24,20 +28,58 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 public class LeftFragment extends ListFragment {
 	boolean mHasDetailsFrame;
 	int mPositionChecked = 0;
 	int mPositionShown = -1;
 
+	// Array of strings storing country names
+	String[] names = new String[] { "Workout Hard", "Read books every day", "Let's meditation", "Yoga yoga!",
+			"Party every weekend", };
+
+	// Array of integers points to images stored in /res/drawable/
+	int[] chllgprofiles = new int[] { R.drawable.flag1, R.drawable.flag2, R.drawable.flag3, R.drawable.flag4,
+			R.drawable.flag5, };
+
+	// Array of strings to store currencies
+	String[] descriptions = new String[] { "Workout hard every 3 days", "Pakistani Rupee", "Sri Lankan Rupee",
+			"Renminbi", "Bangladeshi Taka", };
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		showDetails(position);
+	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setHasOptionsMenu(true);
+		// Each row in the list stores country name, currency and flag
+		List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
+		for (int i = 0; i < 5; i++) {
+			HashMap<String, String> hm = new HashMap<String, String>();
+			hm.put("txt", names[i]);
+			hm.put("cur", descriptions[i]);
+			hm.put("flag", Integer.toString(chllgprofiles[i]));
+			aList.add(hm);
+		}
+
+		// Keys used in Hashmap
+		String[] from = { "flag", "txt", "cur" };
+
+		// Ids of views in listview_layout
+		int[] to = { R.id.flag, R.id.txt, R.id.cur };
+
+		// Instantiating an adapter to store each items
+		// R.layout.listview_layout defines the layout of each item
+		SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.chllg_listview, from,
+				to);
+		
 		// Populate list with our static array of titles.
-		setListAdapter(new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, Shakespeare.TITLES));
+		setListAdapter(adapter);
 
 		// Check to see if we have a frame in which to embed the details
 		// fragment directly in the containing UI.
@@ -58,24 +100,9 @@ public class LeftFragment extends ListFragment {
 			showDetails(mPositionChecked);
 		}
 	}
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-
-		outState.putInt("curChoice", mPositionChecked);
-		outState.putInt("shownChoice", mPositionShown);
-	}
-
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		showDetails(position);
-	}
-
 	/**
-	 * Helper function to show the details of a selected item, either by
-	 * displaying a fragment in-place in the current UI, or starting a whole new
-	 * activity in which it is displayed.
+	 * Helper function to show the details of a selected item, either by displaying a fragment in-place in the current
+	 * UI, or starting a whole new activity in which it is displayed.
 	 */
 	void showDetails(int index) {
 		mPositionChecked = index;
@@ -92,12 +119,8 @@ public class LeftFragment extends ListFragment {
 
 				// Execute a transaction, replacing any existing fragment
 				// with this one inside the frame.
-				getFragmentManager()
-						.beginTransaction()
-						.replace(R.id.frame_details, df)
-						.setTransition(
-								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-						.commit();
+				getFragmentManager().beginTransaction().replace(R.id.frame_details, df)
+						.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
 
 				mPositionShown = index;
 			}
@@ -118,17 +141,11 @@ public class LeftFragment extends ListFragment {
 		inflater.inflate(R.menu.fragment_challenge_list, menu);
 	}
 
-	@SuppressLint("NewApi")
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-		}
-		
-
-		return super.onCreateView(inflater, container, savedInstanceState);
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt("curChoice", mPositionChecked);
+		outState.putInt("shownChoice", mPositionShown);
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
