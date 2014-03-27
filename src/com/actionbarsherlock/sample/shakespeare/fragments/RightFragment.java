@@ -1,5 +1,6 @@
 package com.actionbarsherlock.sample.shakespeare.fragments;
 
+import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -38,13 +41,14 @@ public class RightFragment extends Fragment {
             // the view hierarchy; it would just never be used.
             return null;
         }
-
+        RelativeLayout mCompInfoView = (RelativeLayout) getActivity().getLayoutInflater().inflate(R.layout.comp_info, null);
         ScrollView scroller = new ScrollView(getActivity());
         TextView text = new TextView(getActivity());
         int padding = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getActivity().getResources().getDisplayMetrics());
         text.setPadding(padding, padding, padding, padding);
-        scroller.addView(text);
-        text.setText(Shakespeare.DIALOGUE[getArguments().getInt("index", 0)]);
+        scroller.addView(mCompInfoView);
+        //scroller.addView(text);
+        //text.setText(Shakespeare.DIALOGUE[getArguments().getInt("index", 0)]);
         return scroller;
     }
 }

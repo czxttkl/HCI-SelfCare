@@ -1,41 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<manifest
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.actionbarsherlock.sample.shakespeare"
-	android:versionCode="55"
-	android:versionName="3.5.1">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.actionbarsherlock.sample.shakespeare"
+    android:versionCode="55"
+    android:versionName="3.5.1" >
 
     <uses-sdk
-    	android:minSdkVersion="4"
-    	android:targetSdkVersion="13"/>
+        android:minSdkVersion="4"
+        android:targetSdkVersion="13" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
 
     <application
-    	android:icon="@drawable/icon"
-    	android:label="@string/application_label"
-    	android:theme="@style/Theme.Sherlock.Light">
+        android:icon="@drawable/icon"
+        android:label="@string/application_label"
+        android:theme="@style/Theme.Sherlock.Light" >
+        <activity
+            android:name="io.github.czxttkl.game.LoginActivity"
+            android:label="Login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        
-		<activity
-			android:name="io.github.czxttkl.game.LoginActivity"
-			android:label="Login">
-			
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-		
-		<activity
-		    android:label="MainScreen"
-			android:name="io.github.czxttkl.game.MainScreenActivity"/>
-		
-		<activity
-			android:name=".activities.DetailsActivity"/>
-		
-		<activity
-		    android:label="Competition List"
-			android:name="io.github.czxttkl.game.JoinActivity" />
-		
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="io.github.czxttkl.game.MainScreenActivity"
+            android:label="MainScreen" />
+        <activity android:name=".activities.DetailsActivity" />
+        <activity
+            android:name="io.github.czxttkl.game.CameraActivity"
+            android:label="Camera"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="io.github.czxttkl.game.JoinActivity"
+            android:label="Competition List" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.czxttkl.game.MainScreenActivity" />
+        </activity>
+        <activity
+            android:name="io.github.czxttkl.game.ChallengeActivity"
+            android:label="Challenge" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.czxttkl.game.MainScreenActivity" />
+        </activity>
     </application>
+
 </manifest>

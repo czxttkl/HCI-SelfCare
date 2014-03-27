@@ -34,6 +34,6 @@
          android:layout_height="wrap_content"
          android:text="Login"
          android:onClick="onClickLogin"
-         android:layout_margin="10dip"/>
+         android:layout_marginTop="80dip"/>
 
 </LinearLayout>

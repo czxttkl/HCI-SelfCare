@@ -19,5 +19,6 @@ public class LoginActivity extends Activity {
 		Intent i = new Intent();
 		i.setComponent(new ComponentName(this, MainScreenActivity.class));
 		startActivity(i);
+		finish();
 	}
 }
