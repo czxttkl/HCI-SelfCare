@@ -129,7 +129,7 @@ public class LeftProgressFragment extends ListFragment {
 			// Otherwise we need to launch a new activity to display
 			// the dialog fragment with selected text.
 			Intent intent = new Intent();
-			intent.setClass(getActivity(), DetailsActivity.class);
+			intent.setClass(getActivity(), ProgressDetailActivity.class);
 			intent.putExtra("index", index);
 			startActivity(intent);
 		}

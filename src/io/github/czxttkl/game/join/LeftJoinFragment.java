@@ -8,10 +8,10 @@ import io.github.czxttkl.game.Challenge;
 import io.github.czxttkl.game.ChallengeActivity;
 import io.github.czxttkl.game.ChallengeLab;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
+import io.github.czxttkl.game.progress.ProgressDetailActivity;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
-import com.actionbarsherlock.sample.shakespeare.activities.DetailsActivity;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
@@ -129,7 +129,7 @@ public class LeftJoinFragment extends ListFragment {
 			// Otherwise we need to launch a new activity to display
 			// the dialog fragment with selected text.
 			Intent intent = new Intent();
-			intent.setClass(getActivity(), DetailsActivity.class);
+			intent.setClass(getActivity(), JoinDetailActivity.class);
 			intent.putExtra("index", index);
 			startActivity(intent);
 		}

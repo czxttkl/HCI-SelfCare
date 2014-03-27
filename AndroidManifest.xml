@@ -27,14 +27,15 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/application_label"
-        android:theme="@style/Theme.Sherlock.Light"
-        android:largeHeap="true" >
+        android:largeHeap="true"
+        android:theme="@style/Theme.Sherlock.Light" >
         <activity
             android:name="io.github.czxttkl.game.login.LoginActivity"
             android:label="CoolCare"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -43,7 +44,6 @@
             android:label="MainScreen"
             android:screenOrientation="portrait" />
         <activity android:name=".activities.DetailsActivity" />
-        
         <activity
             android:name="io.github.czxttkl.game.CameraActivity"
             android:label="Camera"
@@ -52,34 +52,32 @@
         <activity
             android:name="io.github.czxttkl.game.progress.ProgressActivity"
             android:label="My Challenges" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.github.czxttkl.game.MainScreenActivity" />
         </activity>
-        
         <activity
             android:name="io.github.czxttkl.game.join.JoinActivity"
             android:label="Browse Challenges" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.github.czxttkl.game.MainScreenActivity" />
         </activity>
-        
-         <activity
+        <activity
             android:name="io.github.czxttkl.game.graph.GraphActivity"
             android:label="Browse Challenges" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.github.czxttkl.game.MainScreenActivity" />
         </activity>
-        
         <activity
             android:name="io.github.czxttkl.game.ChallengeActivity"
             android:label="Challenge"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.github.czxttkl.game.MainScreenActivity" />
+        </activity>
+        <activity
+            android:name="io.github.czxttkl.game.join.JoinDetailActivity"
+            android:label="Browse Challenges" >
+        </activity>
+        <activity
+            android:name="io.github.czxttkl.game.progress.ProgressDetailActivity"
+            android:label="My Challenges" >
+        </activity>
+        
+        <activity
+            android:name="io.github.czxttkl.game.progress.UpdateProgress"
+            android:label="Upload" >
         </activity>
     </application>
 
