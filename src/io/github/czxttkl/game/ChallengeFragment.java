@@ -1,5 +1,6 @@
 package io.github.czxttkl.game;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -96,7 +97,11 @@ public class ChallengeFragment extends Fragment {
 		});
 
 		mDateButton = (Button) v.findViewById(R.id.challenge_date);
-		updateDate();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String currentDateandTime = sdf.format(new Date(System.currentTimeMillis()));
+		
+        mDateButton.setText(currentDateandTime);
 		mDateButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				 FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
