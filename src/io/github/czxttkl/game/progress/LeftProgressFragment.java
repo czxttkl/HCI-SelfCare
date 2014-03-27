@@ -46,6 +46,8 @@ public class LeftProgressFragment extends ListFragment {
 	// Array of strings to store currencies
 	String[] descriptions = new String[] { "Workout hard every 3 days", "Pakistani Rupee", "Sri Lankan Rupee",
 			"Renminbi", "Bangladeshi Taka", };
+	// Colors
+	int[] colorbars = new int[] {R.drawable.physical, R.drawable.mental, R.drawable.mental,R.drawable.physical,R.drawable.social};
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
@@ -64,14 +66,15 @@ public class LeftProgressFragment extends ListFragment {
 			hm.put("txt", names[i]);
 			hm.put("cur", descriptions[i]);
 			hm.put("flag", Integer.toString(chllgprofiles[i]));
+			hm.put("colorbar", Integer.toString(colorbars[i]));
 			aList.add(hm);
 		}
 
 		// Keys used in Hashmap
-		String[] from = { "flag", "txt", "cur" };
+		String[] from = { "flag", "txt", "cur","colorbar" };
 
 		// Ids of views in listview_layout
-		int[] to = { R.id.flag, R.id.txt, R.id.cur };
+		int[] to = { R.id.flag, R.id.txt, R.id.cur, R.id.colorbar };
 
 		// Instantiating an adapter to store each items
 		// R.layout.listview_layout defines the layout of each item

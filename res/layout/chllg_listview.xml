@@ -4,6 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
  
+   <ImageView
+        android:id="@+id/colorbar"
+        android:scaleType="fitXY"
+        android:layout_width="15dp"
+        android:layout_height="50dp"
+        android:paddingTop="1dp"
+        android:paddingRight="5dp"
+        android:adjustViewBounds="true"
+        android:paddingBottom="1dp" />
+    
     <ImageView
         android:id="@+id/flag"
         android:layout_width="50dp"
