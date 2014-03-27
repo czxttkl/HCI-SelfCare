@@ -1,5 +1,6 @@
 package io.github.czxttkl.game;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -94,17 +96,18 @@ public class ChallengeFragment extends Fragment {
 			}
 		});
 
-		mDateButton = (Button) v.findViewById(R.id.crime_date);
-		updateDate();
+		mDateButton = (Button) v.findViewById(R.id.challenge_date);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String currentDateandTime = sdf.format(new Date(System.currentTimeMillis()));
+		
+        mDateButton.setText(currentDateandTime);
 		mDateButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				// FragmentManager fm = getActivity()
-				// .getSupportFragmentManager();
-				// DatePickerFragment dialog = DatePickerFragment
-				// .newInstance(mCrime.getDate());
-				// dialog.setTargetFragment(ChallengeFragment.this,
-				// REQUEST_DATE);
-				// dialog.show(fm, DIALOG_DATE);
+				 FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
+				 DatePickerFragment dialog = DatePickerFragment.newInstance(new Date(System.currentTimeMillis()));
+				 dialog.setTargetFragment(ChallengeFragment.this, REQUEST_DATE);
+				 dialog.show(fm, DIALOG_DATE);
 			}
 		});
 
