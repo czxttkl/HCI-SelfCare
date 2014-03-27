@@ -63,7 +63,8 @@ public class JoinDetailActivity extends FragmentActivity {
     }
     
     public void onClickJoin(View v) {
-    	Intent i = new Intent(this, UpdateProgress.class);
+    	Intent i = new Intent(this, ProgressActivity.class);
 		startActivity(i);
+		this.finish();
 	}
 }

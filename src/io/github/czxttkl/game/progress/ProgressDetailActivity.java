@@ -61,6 +61,7 @@ public class ProgressDetailActivity extends FragmentActivity {
     }
     
     public void onClickUpdate(View v) {
-
+    	Intent i = new Intent(this, UpdateProgress.class);
+		startActivity(i);
 	}
 }

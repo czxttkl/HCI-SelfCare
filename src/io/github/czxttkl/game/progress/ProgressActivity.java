@@ -1,5 +1,6 @@
 package io.github.czxttkl.game.progress;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -17,6 +18,7 @@ public class ProgressActivity extends FragmentActivity {
 	}
 
 	public void onClickUpdate(View v) {
-
+		Intent i = new Intent(this, UpdateProgress.class);
+		startActivity(i);
 	}
 }

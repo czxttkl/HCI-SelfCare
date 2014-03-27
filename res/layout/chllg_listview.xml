@@ -7,7 +7,7 @@
    <ImageView
         android:id="@+id/colorbar"
         android:scaleType="fitXY"
-        android:layout_width="15dp"
+        android:layout_width="12dp"
         android:layout_height="50dp"
         android:paddingTop="1dp"
         android:paddingRight="5dp"

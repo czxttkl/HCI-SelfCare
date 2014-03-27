@@ -1,5 +1,6 @@
 package io.github.czxttkl.game.join;
 
+import io.github.czxttkl.game.progress.ProgressActivity;
 import io.github.czxttkl.game.progress.UpdateProgress;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,8 @@ public class JoinActivity extends FragmentActivity {
 	}
 
 	public void onClickJoin(View v) {
-		Intent i = new Intent(this, UpdateProgress.class);
+		Intent i = new Intent(this, ProgressActivity.class);
 		startActivity(i);
+		this.finish();
 	}
 }
