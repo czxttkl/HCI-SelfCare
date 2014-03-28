@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import io.github.czxttkl.game.Challenge;
-import io.github.czxttkl.game.ChallengeActivity;
-import io.github.czxttkl.game.ChallengeLab;
+import io.github.czxttkl.game.create.Challenge;
+import io.github.czxttkl.game.create.ChallengeActivity;
+import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
-import com.actionbarsherlock.sample.shakespeare.activities.DetailsActivity;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;

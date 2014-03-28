@@ -1,4 +1,4 @@
-package io.github.czxttkl.game;
+package io.github.czxttkl.game.create;
 
 import java.util.Date;
 import java.util.UUID;

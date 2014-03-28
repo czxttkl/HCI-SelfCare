@@ -1,4 +1,4 @@
-package io.github.czxttkl.game;
+package io.github.czxttkl.game.create;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

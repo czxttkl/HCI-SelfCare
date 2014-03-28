@@ -1,7 +1,7 @@
 package io.github.czxttkl.game.progress;
 
-import io.github.czxttkl.game.ChallengeFragment;
-import io.github.czxttkl.game.DatePickerFragment;
+import io.github.czxttkl.game.create.ChallengeFragment;
+import io.github.czxttkl.game.create.DatePickerFragment;
 
 import java.util.Date;
 

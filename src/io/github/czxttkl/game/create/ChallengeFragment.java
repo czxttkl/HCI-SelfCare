@@ -1,4 +1,4 @@
-package io.github.czxttkl.game;
+package io.github.czxttkl.game.create;
 
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 
@@ -74,10 +74,6 @@ public class ChallengeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_challenge, parent, false);
-
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-		}
 
 
 		mTitleField = (EditText) v.findViewById(R.id.crime_title);

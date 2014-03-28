@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import io.github.czxttkl.game.Challenge;
-import io.github.czxttkl.game.ChallengeActivity;
-import io.github.czxttkl.game.ChallengeLab;
+import io.github.czxttkl.game.create.Challenge;
+import io.github.czxttkl.game.create.ChallengeActivity;
+import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 import io.github.czxttkl.game.progress.ProgressDetailActivity;
 

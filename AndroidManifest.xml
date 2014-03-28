@@ -43,9 +43,8 @@
             android:name="io.github.czxttkl.game.mainscreen.MainScreenActivity"
             android:label="MainScreen"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.DetailsActivity" />
         <activity
-            android:name="io.github.czxttkl.game.CameraActivity"
+            android:name="io.github.czxttkl.game.create.CameraActivity"
             android:label="Camera"
             android:screenOrientation="landscape" >
         </activity>
@@ -62,7 +61,7 @@
             android:label="Browse Challenges" >
         </activity>
         <activity
-            android:name="io.github.czxttkl.game.ChallengeActivity"
+            android:name="io.github.czxttkl.game.create.ChallengeActivity"
             android:label="Challenge"
             android:screenOrientation="portrait" >
         </activity>
