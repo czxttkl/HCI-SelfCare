@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class JoinDetailActivity extends FragmentActivity {
     @Override
@@ -66,5 +67,7 @@ public class JoinDetailActivity extends FragmentActivity {
     	Intent i = new Intent(this, ProgressActivity.class);
 		startActivity(i);
 		this.finish();
+		Toast toast = Toast.makeText(getBaseContext(), "The activity is added to your list.", Toast.LENGTH_LONG);
+		toast.show();
 	}
 }

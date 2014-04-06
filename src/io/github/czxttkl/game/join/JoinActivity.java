@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 
@@ -23,5 +24,7 @@ public class JoinActivity extends FragmentActivity {
 		Intent i = new Intent(this, ProgressActivity.class);
 		startActivity(i);
 		this.finish();
+		Toast toast = Toast.makeText(getBaseContext(), "The activity is added to your list.", Toast.LENGTH_LONG);
+		toast.show();
 	}
 }
