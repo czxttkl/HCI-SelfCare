@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:layout_marginBottom="50dp" 
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="20dp"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -79,16 +79,22 @@
 
 
     <Button
-        android:id="@+id/new_button"
+        android:id="@+id/browse_button"
         style="@style/buttoninmain"
         android:onClick="onClickJoin"
-        android:text="Browse Challenges" />
+        android:text="Browse Challenges"    />
 
     <Button
-        android:id="@+id/learn_button"
+        android:id="@+id/progress_button"
         style="@style/buttoninmain"
         android:onClick="onClickProgress"
-        android:text="My Challenges" />
+        android:text="My Challenges"    />
+    
+    <Button
+        android:id="@+id/score_button"
+        style="@style/buttoninmain"
+        android:onClick="onClickAvatar"
+        android:text="My Chart"    />
 
     <ImageView
         android:id="@+id/imageView2"
