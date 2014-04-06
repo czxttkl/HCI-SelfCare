@@ -44,15 +44,14 @@ public class MainScreenChartFragment extends Fragment {
 	}
 
 	private void drawChart() {
-		String[] titles = new String[] { "Crete Air Temperature", "Skiathos Air Temperature" };
+		String[] titles = new String[] { "Time Spent In Activities"};
 		List<double[]> x = new ArrayList<double[]>();
 		for (int i = 0; i < titles.length; i++) {
 			x.add(new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 });
 		}
 		List<double[]> values = new ArrayList<double[]>();
 		values.add(new double[] { 12.3, 12.5, 13.8, 16.8, 20.4, 24.4, 26.4, 26.1, 23.6, 20.3, 17.2, 13.9 });
-		values.add(new double[] { 9, 10, 11, 15, 19, 23, 26, 25, 22, 18, 13, 10 });
-		int[] colors = new int[] { Color.GREEN, Color.rgb(200, 150, 0) };
+		int[] colors = new int[] { Color.GREEN };
 		PointStyle[] styles = new PointStyle[] { PointStyle.CIRCLE, PointStyle.DIAMOND };
 		XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
 		renderer.setPointSize(5.5f);
@@ -62,7 +61,7 @@ public class MainScreenChartFragment extends Fragment {
 			r.setLineWidth(5);
 			r.setFillPoints(true);
 		}
-		setChartSettings(renderer, "Your Activeness", "Month", "Temperature", 0.5, 12.5, 0, 40, Color.LTGRAY, Color.LTGRAY);
+		setChartSettings(renderer, "Your Activeness Per Week", "Week", "Hours", 0.5, 12.5, 0, 40, Color.LTGRAY, Color.LTGRAY);
 
 		renderer.setXLabels(12);
 		renderer.setYLabels(10);
@@ -73,7 +72,7 @@ public class MainScreenChartFragment extends Fragment {
 		renderer.setPanLimits(new double[] { -10, 20, -10, 40 });
 		renderer.setZoomLimits(new double[] { -10, 20, -10, 40 });
 
-		XYValueSeries sunSeries = new XYValueSeries("Sunshine hours");
+		XYValueSeries sunSeries = new XYValueSeries("Updates Count");
 		sunSeries.add(1f, 35, 4.3);
 		sunSeries.add(2f, 35, 4.9);
 		sunSeries.add(3f, 35, 5.9);
@@ -89,7 +88,7 @@ public class MainScreenChartFragment extends Fragment {
 		XYSeriesRenderer lightRenderer = new XYSeriesRenderer();
 		lightRenderer.setColor(Color.YELLOW);
 
-		XYSeries waterSeries = new XYSeries("Water Temperature");
+		XYSeries waterSeries = new XYSeries("Scores");
 		waterSeries.add(1, 16);
 		waterSeries.add(2, 15);
 		waterSeries.add(3, 16);
@@ -116,7 +115,7 @@ public class MainScreenChartFragment extends Fragment {
 
 		renderer.setMarginsColor(Color.WHITE);
 		
-		String[] types = new String[] { BarChart.TYPE, BubbleChart.TYPE, LineChart.TYPE, CubicLineChart.TYPE };
+		String[] types = new String[] { BarChart.TYPE, BubbleChart.TYPE, LineChart.TYPE };
 		GraphicalView chartView = ChartFactory.getCombinedXYChartView(getActivity(), dataset, renderer, types);
 		
 		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.mainscreen_chart);
