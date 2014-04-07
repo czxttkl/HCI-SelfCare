@@ -7,6 +7,7 @@ import java.util.List;
 import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
 import io.github.czxttkl.game.create.ChallengeLab;
+import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 import io.github.czxttkl.game.progress.ProgressDetailActivity;
 
@@ -145,6 +146,7 @@ public class LeftJoinFragment extends ListFragment {
 		// TODO Auto-generated method stub
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.new_challenge_list, menu);
+		inflater.inflate(R.menu.help_on_menu, menu);
 	}
 
 	@Override
@@ -163,6 +165,10 @@ public class LeftJoinFragment extends ListFragment {
 			Intent i = new Intent(getActivity(), ChallengeActivity.class);
 			startActivity(i);
 			getActivity().finish();
+			return true;
+		case R.id.menu_help:
+			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
+			startActivity(helpIntent);
 			return true;
 		case android.R.id.home:
 			Intent intent = new Intent(getActivity(), MainScreenActivity.class);

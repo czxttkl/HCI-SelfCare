@@ -26,9 +26,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class CameraFragment extends Fragment {
-    private static final String TAG = "CrimeCameraFragment";
+    private static final String TAG = "ChallengeCameraFragment";
 
-    public static final String EXTRA_PHOTO_FILENAME = "CrimeCameraFragment.filename";
+    public static final String EXTRA_PHOTO_FILENAME = "info.shangma.hci.photo_filename";
 
     private Camera mCamera;
     private SurfaceView mSurfaceView;

@@ -1,5 +1,6 @@
 package io.github.czxttkl.game.create;
 
+import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 
 import java.text.SimpleDateFormat;
@@ -18,9 +19,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.Menu;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +42,7 @@ public class ChallengeFragment extends Fragment {
 	private static final int REQUEST_DATE = 0;
 	private static final int REQUEST_PHOTO = 1;
 
-	Challenge mCrime;
+	Challenge mChallenge;
 	EditText mTitleField;
 	Button mDateButton;
 	ImageButton mPhotoButton;
@@ -60,7 +63,7 @@ public class ChallengeFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
-		// mCrime = ChallengeLab.get(getActivity()).getCrime(crimeId);
+		mChallenge = ChallengeLab.get(getActivity()).getCrime(crimeId);
 
 		setHasOptionsMenu(true);
 	}
@@ -128,16 +131,14 @@ public class ChallengeFragment extends Fragment {
 		mPhotoView = (ImageView) v.findViewById(R.id.crime_imageView);
 		mPhotoView.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				// Photo p = mCrime.getPhoto();
-				// if (p == null)
-				// return;
+				Photo p = mChallenge.getPhoto();
+				if (p == null)
+					return;
 
-				// FragmentManager fm = getActivity()
-				// .getSupportFragmentManager();
-				// String path = getActivity()
-				// .getFileStreamPath(p.getFilename()).getAbsolutePath();
-				// ImageFragment.createInstance(path)
-				// .show(fm, DIALOG_IMAGE);
+				FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
+				String path = getActivity().getFileStreamPath(p.getFilename())
+						.getAbsolutePath();
+				ImageFragment.createInstance(path).show(fm, DIALOG_IMAGE);
 			}
 		});
 
@@ -146,7 +147,7 @@ public class ChallengeFragment extends Fragment {
 
 	private void showPhoto() {
 		// (re)set the image button's image based on our photo
-		Photo p = null;// mCrime.getPhoto();
+		Photo p = mChallenge.getPhoto();
 		BitmapDrawable b = null;
 		if (p != null) {
 			String path = getActivity().getFileStreamPath(p.getFilename())
@@ -164,9 +165,21 @@ public class ChallengeFragment extends Fragment {
 			startActivity(intent);
 			getActivity().finish();
 			return true;
+		case R.id.menu_help:
+			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
+			startActivity(helpIntent);
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.help_on_menu, menu);
+
 	}
 
 	@Override
@@ -188,7 +201,7 @@ public class ChallengeFragment extends Fragment {
 		if (requestCode == REQUEST_DATE) {
 			Date date = (Date) data
 					.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-			// mCrime.setDate(date);
+			 mChallenge.setDate(date);
 			updateDate();
 		} else if (requestCode == REQUEST_PHOTO) {
 			// create a new Photo object and attach it to the crime
@@ -196,7 +209,7 @@ public class ChallengeFragment extends Fragment {
 					.getStringExtra(CameraFragment.EXTRA_PHOTO_FILENAME);
 			if (filename != null) {
 				Photo p = new Photo(filename);
-				mCrime.setPhoto(p);
+				mChallenge.setPhoto(p);
 				showPhoto();
 			}
 		}
