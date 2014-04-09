@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="application_label">ABS: Shakespeare Sample</string>
+    <string name="application_label">Bistro</string>
       <string name="date_picker_title">Date of crime:</string>
     <string name="activity_titles">Competitions</string>
     <string name="activity_details">Shakespeare Details</string>
+    
+    
+    
+    
+     <string name="bistro">Welcome to Bistro</string>
+     <string name="order">Order</string>
+     <string name="bill">Pay</string>
+     <string name="food">Food</string>
+     <string name="drink">Drinks</string>
+     <string name="ask">Ask to a patron</string>
+     <string name="more">More</string>
+     <string name="rate">Rate us:</string>
+     <string name="share">Share on:</string>
 </resources>
