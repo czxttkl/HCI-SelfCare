@@ -82,6 +82,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        class="io.github.czxttkl.game.mainscreen.MainScreenChartFragment" />
+        class="io.github.czxttkl.game.graph.ChartFragment" />
 
 </LinearLayout>

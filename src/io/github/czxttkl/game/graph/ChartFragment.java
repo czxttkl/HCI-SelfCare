@@ -1,4 +1,10 @@
-package io.github.czxttkl.game.mainscreen;
+package io.github.czxttkl.game.graph;
+
+import io.github.czxttkl.game.create.Challenge;
+import io.github.czxttkl.game.create.ChallengeActivity;
+import io.github.czxttkl.game.create.ChallengeLab;
+import io.github.czxttkl.game.help.HelpViewpager;
+import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,18 +26,52 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 
-public class MainScreenChartFragment extends Fragment {
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public class ChartFragment extends Fragment {
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.help_on_menu, menu);
+
+	}
+
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case R.id.menu_help:
+			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
+			startActivity(helpIntent);
+			return true;
+		case android.R.id.home:
+			Intent intent = new Intent(getActivity(), MainScreenActivity.class);
+			startActivity(intent);
+			getActivity().finish();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.mainscreen_chart, container, false);
@@ -41,6 +81,14 @@ public class MainScreenChartFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		drawChart();
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+
 	}
 
 	private void drawChart() {

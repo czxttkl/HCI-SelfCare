@@ -9,9 +9,9 @@ import android.util.Log;
 
 public class ChallengeLab {
 	private static final String TAG = "CrimeLab";
-	private static final String FILENAME = "crimes.json";
+	private static final String FILENAME = "challenges.json";
 
-	private ArrayList<Challenge> mCrimes;
+	private ArrayList<Challenge> mChallenges;
 	private ChallengeIntentJSONSerializer mSerializer;
 
 	private static ChallengeLab sCrimeLab;
@@ -22,9 +22,9 @@ public class ChallengeLab {
 		mSerializer = new ChallengeIntentJSONSerializer(mAppContext, FILENAME);
 
 		try {
-			mCrimes = mSerializer.loadCrimes();
+			mChallenges = mSerializer.loadChallenges();
 		} catch (Exception e) {
-			mCrimes = new ArrayList<Challenge>();
+			mChallenges = new ArrayList<Challenge>();
 			Log.e(TAG, "Error loading crimes: ", e);
 		}
 	}
@@ -37,7 +37,7 @@ public class ChallengeLab {
 	}
 
 	public Challenge getCrime(UUID id) {
-		for (Challenge c : mCrimes) {
+		for (Challenge c : mChallenges) {
 			if (c.getId().equals(id))
 				return c;
 		}
@@ -45,22 +45,22 @@ public class ChallengeLab {
 	}
 
 	public void addCrime(Challenge c) {
-		mCrimes.add(c);
+		mChallenges.add(c);
 		saveCrimes();
 	}
 
 	public ArrayList<Challenge> getCrimes() {
-		return mCrimes;
+		return mChallenges;
 	}
 
 	public void deleteCrime(Challenge c) {
-		mCrimes.remove(c);
+		mChallenges.remove(c);
 		saveCrimes();
 	}
 
 	public boolean saveCrimes() {
 		try {
-			mSerializer.saveCrimes(mCrimes);
+			mSerializer.saveCrimes(mChallenges);
 			Log.d(TAG, "crimes saved to file");
 			return true;
 		} catch (Exception e) {
