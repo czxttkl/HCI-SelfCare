@@ -9,11 +9,12 @@
     
     
      <string name="bistro">Welcome to Bistro</string>
+     <string name="details">   (Table:5 People:6 Curr Bill:$95)</string>
      <string name="order">Order</string>
      <string name="bill">Pay</string>
      <string name="food">Food</string>
      <string name="drink">Drinks</string>
-     <string name="ask">Ask to a patron</string>
+     <string name="ask">Ask a patron</string>
      <string name="more">More</string>
      <string name="rate">Rate us:</string>
      <string name="share">Share on:</string>

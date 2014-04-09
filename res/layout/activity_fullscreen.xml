@@ -4,16 +4,39 @@
     android:layout_height="match_parent"
     android:layout_marginTop="30dp"
     android:background="#ffffff"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".FullscreenActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/bistro"
-        android:textSize="40sp" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bistro"
+            android:textSize="40sp" 
+            android:layout_marginLeft="200dp"/>
+
+        <TextView
+            android:id="@+id/textView111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/details"
+            android:textSize="20sp" 
+            android:layout_marginLeft="200dp"/>
+        
+         <ImageView
+            android:id="@+id/imageView1"
+            android:layout_marginLeft="200dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/question" 
+            android:contentDescription="@string/bistro"
+            android:scaleType="fitXY"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -191,8 +214,8 @@
                 android:layout_height="50dp"
                 android:layout_alignLeft="@+id/ratingBar1"
                 android:layout_alignTop="@+id/textView8"
-                android:src="@drawable/facebook" 
-                android:contentDescription="@string/share"/>
+                android:contentDescription="@string/share"
+                android:src="@drawable/facebook" />
 
             <ImageView
                 android:id="@+id/imageView7"
@@ -201,8 +224,8 @@
                 android:layout_alignLeft="@+id/imageView5"
                 android:layout_alignTop="@+id/imageView6"
                 android:layout_marginLeft="21dp"
-                android:src="@drawable/google" 
-                android:contentDescription="@string/share"/>
+                android:contentDescription="@string/share"
+                android:src="@drawable/google" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -212,7 +235,6 @@
                 android:layout_toRightOf="@+id/imageView5"
                 android:contentDescription="@string/share"
                 android:src="@drawable/twitter" />
-
         </RelativeLayout>
     </LinearLayout>
 
