@@ -78,6 +78,11 @@
             android:name="io.github.czxttkl.game.progress.UpdateProgress"
             android:label="Upload" >
         </activity>
+        
+        <activity
+            android:name="io.github.czxttkl.i3.I3"
+           android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
