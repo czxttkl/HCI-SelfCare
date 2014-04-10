@@ -111,7 +111,7 @@
     <EditText
         android:id="@+id/crime_title"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_marginRight="16dp"
         android:layout_weight="2"
         android:inputType="textMultiLine" />
@@ -146,23 +146,33 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
+        android:layout_height="match_parent" >     
+        
         <TextView
             android:id="@+id/text_date"
-            style="?android:listSeparatorTextViewStyle"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:text="Starting from" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold"
+            android:text="From" />
+        
+        <ImageView
+            android:id="@+id/calendar"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text_date"
+            android:src="@drawable/calendar" />
 
         <Button
             android:id="@+id/challenge_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/text_date" />
+            android:layout_toRightOf="@id/calendar" />
     </RelativeLayout>
 
     <Button

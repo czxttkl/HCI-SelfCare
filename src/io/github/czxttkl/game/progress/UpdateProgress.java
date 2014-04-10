@@ -1,39 +1,32 @@
 package io.github.czxttkl.game.progress;
 
-import io.github.czxttkl.game.create.ChallengeFragment;
-import io.github.czxttkl.game.create.DatePickerFragment;
 
+
+import io.github.czxttkl.game.create.SingleFragmentActivity;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Button;
 
-public class UpdateProgress extends Activity {
+public class UpdateProgress extends SingleFragmentActivity {
 	
-	Button dateButton;
-
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected Fragment createFragment() {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.upload_challenge);
-		
-		dateButton = (Button)findViewById(R.id.challenge_date);
-		dateButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				 DatePickerFragment dialog = DatePickerFragment.newInstance(new Date(System.currentTimeMillis()));
-//				 dialog.show
-			}
-		});
+        UUID crimeId = (UUID)getIntent()
+                .getSerializableExtra(UpdateFragment.EXTRA_CHALLENGE_ID);
+            return UpdateFragment.newInstance(crimeId);
 	}
+
 
 }

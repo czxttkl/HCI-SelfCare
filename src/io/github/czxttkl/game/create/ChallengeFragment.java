@@ -69,7 +69,10 @@ public class ChallengeFragment extends Fragment {
 	}
 
 	public void updateDate() {
-		// mDateButton.setText(mCrime.getDate().toString());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String currentDateandTime = sdf.format(mChallenge.getDate());
+		
+        mDateButton.setText(currentDateandTime);
 	}
 
 	@Override
@@ -80,11 +83,10 @@ public class ChallengeFragment extends Fragment {
 
 
 		mTitleField = (EditText) v.findViewById(R.id.crime_title);
-		// mTitleField.setText(mCrime.getTitle());
 		mTitleField.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence c, int start, int before,
 					int count) {
-				// mCrime.setTitle(c.toString());
+				mChallenge.setTitle(c.toString());
 			}
 
 			public void beforeTextChanged(CharSequence c, int start, int count,
@@ -99,7 +101,7 @@ public class ChallengeFragment extends Fragment {
 
 		mDateButton = (Button) v.findViewById(R.id.challenge_date);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String currentDateandTime = sdf.format(new Date(System.currentTimeMillis()));
 		
         mDateButton.setText(currentDateandTime);
