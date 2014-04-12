@@ -149,6 +149,8 @@ public class ChallengeFragment extends Fragment {
 
 	private void showPhoto() {
 		// (re)set the image button's image based on our photo
+		if (mChallenge == null)
+			return;
 		Photo p = mChallenge.getPhoto();
 		BitmapDrawable b = null;
 		if (p != null) {
@@ -169,6 +171,7 @@ public class ChallengeFragment extends Fragment {
 			return true;
 		case R.id.menu_help:
 			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
+			helpIntent.putExtra("page", 4);
 			startActivity(helpIntent);
 			return true;
 		default:

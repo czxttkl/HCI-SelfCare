@@ -36,6 +36,7 @@ public class MainScreenActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.menu_help:
 			Intent helpIntent = new Intent(this, HelpViewpager.class);
+			helpIntent.putExtra("page", 0);
 			startActivity(helpIntent);
 			return true;
 		case android.R.id.home:

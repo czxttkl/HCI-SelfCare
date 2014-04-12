@@ -165,6 +165,7 @@ public class LeftProgressFragment extends ListFragment {
 			return true;
 		case R.id.menu_help:
 			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
+			helpIntent.putExtra("page", 1);
 			startActivity(helpIntent);
 			return true;
 		case android.R.id.home:

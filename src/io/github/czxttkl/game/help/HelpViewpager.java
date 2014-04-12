@@ -30,6 +30,8 @@ public class HelpViewpager extends Activity {
 	private ImageView mPage0;
 	private ImageView mPage1;
 	private ImageView mPage2;
+	private ImageView mPage3;
+	private ImageView mPage4;
 	
 	
 	
@@ -37,6 +39,13 @@ public class HelpViewpager extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        int page = 0;
+        if (extras != null) {
+            page = extras.getInt("page");
+        }
+        
+        
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -51,6 +60,8 @@ public class HelpViewpager extends Activity {
         mPage0 = (ImageView)findViewById(R.id.page0);
         mPage1 = (ImageView)findViewById(R.id.page1);
         mPage2 = (ImageView)findViewById(R.id.page2);
+        mPage3 = (ImageView)findViewById(R.id.page3);
+        mPage4 = (ImageView)findViewById(R.id.page4);
         
         
         //将要分页显示的View装入数组中
@@ -58,6 +69,8 @@ public class HelpViewpager extends Activity {
         View view1 = mLi.inflate(R.layout.help_page1, null);
         View view2 = mLi.inflate(R.layout.help_page2, null);
         View view3 = mLi.inflate(R.layout.help_page3, null);
+        View view4 = mLi.inflate(R.layout.help_page4, null);
+        View view5 = mLi.inflate(R.layout.help_page5, null);
 
         	    
         //每个页面的view数据
@@ -65,11 +78,15 @@ public class HelpViewpager extends Activity {
         views.add(view1);
         views.add(view2);
         views.add(view3);
+        views.add(view4);
+        views.add(view5);
         
         final ArrayList<String> titles = new ArrayList<String>();
-        titles.add("①");
-        titles.add("②");
-        titles.add("③");
+        titles.add("1");
+        titles.add("2");
+        titles.add("3");
+        titles.add("4");
+        titles.add("5");
         
         
         //填充ViewPager的数据适配器
@@ -103,6 +120,8 @@ public class HelpViewpager extends Activity {
 		};
 		
 		mViewPager.setAdapter(mPagerAdapter);
+		mViewPager.setCurrentItem(page);
+		
     }
     
     public class MyOnPageChangeListener implements OnPageChangeListener {
@@ -138,35 +157,36 @@ public class HelpViewpager extends Activity {
 			case 2:
 				mPage2.setImageDrawable(getResources().getDrawable(R.drawable.help_dot_now));
 				mPage1.setImageDrawable(getResources().getDrawable(R.drawable.help_dot));
-//				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.page));
+				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.help_dot));
 				if (currIndex == arg0-1) {
 					animation = new TranslateAnimation(20*(arg0-1), 20*arg0, 0, 0);
 				}
-//				else if (currIndex == arg0+1) {
+				else if (currIndex == arg0+1) {
+					animation = new TranslateAnimation(20*(arg0+1), 20*arg0, 0, 0);
+				}
+				break;
+			case 3:
+				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.help_dot_now));
+				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.help_dot));
+				mPage2.setImageDrawable(getResources().getDrawable(R.drawable.help_dot));
+				if (currIndex == arg0-1) {
+					animation = new TranslateAnimation(20*(arg0-1), 20*arg0, 0, 0);
+					
+				} else if (currIndex == arg0+1) {
+					animation = new TranslateAnimation(20*(arg0+1), 20*arg0, 0, 0);
+				}
+				break;
+			case 4:
+				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.help_dot_now));
+				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.help_dot));
+//				mPage5.setImageDrawable(getResources().getDrawable(R.drawable.page));
+				if (currIndex == arg0-1) {
+					animation = new TranslateAnimation(20*(arg0-1), 20*arg0, 0, 0);
+				}
+//				} else if (currIndex == arg0+1) {
 //					animation = new TranslateAnimation(20*(arg0+1), 20*arg0, 0, 0);
 //				}
 				break;
-//			case 3:
-//				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-//				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.page));
-//				mPage2.setImageDrawable(getResources().getDrawable(R.drawable.page));
-//				if (currIndex == arg0-1) {
-//					animation = new TranslateAnimation(20*(arg0-1), 20*arg0, 0, 0);
-//					
-//				} else if (currIndex == arg0+1) {
-//					animation = new TranslateAnimation(20*(arg0+1), 20*arg0, 0, 0);
-//				}
-//				break;
-//			case 4:
-//				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
-//				mPage3.setImageDrawable(getResources().getDrawable(R.drawable.page));
-//				mPage5.setImageDrawable(getResources().getDrawable(R.drawable.page));
-//				if (currIndex == arg0-1) {
-//					animation = new TranslateAnimation(20*(arg0-1), 20*arg0, 0, 0);
-//				} else if (currIndex == arg0+1) {
-//					animation = new TranslateAnimation(20*(arg0+1), 20*arg0, 0, 0);
-//				}
-//				break;
 //			case 5:
 //				mPage5.setImageDrawable(getResources().getDrawable(R.drawable.page_now));
 //				mPage4.setImageDrawable(getResources().getDrawable(R.drawable.page));
@@ -208,6 +228,8 @@ public class HelpViewpager extends Activity {
 //				break;
 			}
 			currIndex = arg0;
+			if (animation == null)
+				return;
 			animation.setFillAfter(true);
 			animation.setDuration(300);
 			//mPageImg.startAnimation(animation);
@@ -226,7 +248,7 @@ public class HelpViewpager extends Activity {
 //		intent.setClass(Viewpager.this,DabbleWaitRoom.class);
 //		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //		startActivity(intent);
-//		this.finish();
+		this.finish();
       }  
    
 }

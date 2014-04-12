@@ -5,8 +5,8 @@
     android:versionName="3.5.1" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -77,6 +77,11 @@
         <activity
             android:name="io.github.czxttkl.game.progress.UpdateProgress"
             android:label="Upload" >
+        </activity>
+        
+        <activity
+            android:name="io.github.czxttkl.game.help.HelpViewpager"
+            android:label="Help" >
         </activity>
         
         <activity

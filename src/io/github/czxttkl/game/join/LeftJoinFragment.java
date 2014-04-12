@@ -168,6 +168,7 @@ public class LeftJoinFragment extends ListFragment {
 			return true;
 		case R.id.menu_help:
 			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
+			helpIntent.putExtra("page", 2);
 			startActivity(helpIntent);
 			return true;
 		case android.R.id.home:

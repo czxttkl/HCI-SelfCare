@@ -60,6 +60,7 @@ public class ChartFragment extends Fragment {
 		switch (item.getItemId()) {
 		case R.id.menu_help:
 			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
+			helpIntent.putExtra("page", 3);
 			startActivity(helpIntent);
 			return true;
 		case android.R.id.home:
