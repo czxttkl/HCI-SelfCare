@@ -19,13 +19,14 @@
               /> -->
 
          <TextView
+              android:padding="50dp"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_alignParentTop="true"
              android:layout_centerHorizontal="true"
              android:layout_marginTop="28dp"
              android:gravity="center_horizontal"
-             android:text="Whoever spells four words out first wins!"
+             android:text="@string/helptext3"
              android:textColor="#000"
              android:textSize="18sp" />
 

@@ -18,4 +18,13 @@
      <string name="more">More</string>
      <string name="rate">Rate us:</string>
      <string name="share">Share on:</string>
+     
+     <string name="helptext1">Welcome! The green plus sign will allow you to create a  new challenge. The stars beside your avatar represent achievement in terms of challenges completed in the amount of time you have been signed up.</string>
+     <string name="helptext2">This screen looks a lot like the "browse challenges" screen, except it displays the challenges you are involved with. Click on a challenge to see the latest updates.</string>
+     <string name="helptext3">Here, you can find a challenge to join. There is a green plus sign here to in case you get inspired and want to create a new challenge immediately.</string>
+     <string name="helptext4">Explore the graph that displays challenges completed per week, and updates made per week. </string>
+     <string name="helptext5">The title and location fields let you specify a title and location for the challenge. Frequency lets you set how often progress should be uploaded. Do not forget to tag your challenge.</string>
+     
+     
+     
 </resources>

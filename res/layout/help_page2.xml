@@ -7,13 +7,14 @@
 	  	>
 
           <TextView
+               android:padding="50dp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_alignParentTop="true"
               android:layout_centerHorizontal="true"
               android:layout_marginTop="34dp"
               android:gravity="center_horizontal"
-              android:text="After paired, shake hard to reset your rival's board"
+              android:text="@string/helptext2"
               android:textColor="#000"
               android:textSize="18sp" />
 

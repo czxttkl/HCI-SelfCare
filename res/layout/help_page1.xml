@@ -11,12 +11,13 @@
         android:background="@drawable/help_view1" />
 
           <TextView
+              android:padding="50dp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_alignParentBottom="true"
               android:layout_centerHorizontal="true"
               android:layout_marginBottom="51dp"
-              android:text="Find your rival in the waitroom and get paired!"
+              android:text="@string/helptext1"
               android:textColor="#000"
               android:textSize="18sp" />
 
