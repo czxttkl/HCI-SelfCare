@@ -22,6 +22,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.Menu;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,6 +37,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class ChallengeFragment extends Fragment {
+	public static final String TAG = "ChallengeFragment";
 	public static final String EXTRA_CRIME_ID = "criminalintent.CRIME_ID";
 	private static final String DIALOG_DATE = "date";
 	private static final String DIALOG_IMAGE = "image";
@@ -65,6 +67,12 @@ public class ChallengeFragment extends Fragment {
 		UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
 		mChallenge = ChallengeLab.get(getActivity()).getCrime(crimeId);
 
+		if (mChallenge == null) {
+			Log.i(TAG, "challenge is null");
+		} else {
+			Log.i(TAG, "challenge is not null");
+		}
+		
 		setHasOptionsMenu(true);
 	}
 

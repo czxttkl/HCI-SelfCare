@@ -23,9 +23,9 @@ public class UpdateProgress extends SingleFragmentActivity {
 	@Override
 	protected Fragment createFragment() {
 		// TODO Auto-generated method stub
-        UUID crimeId = (UUID)getIntent()
+        UUID challengeID = (UUID)getIntent()
                 .getSerializableExtra(UpdateFragment.EXTRA_CHALLENGE_ID);
-            return UpdateFragment.newInstance(crimeId);
+            return UpdateFragment.newInstance(challengeID);
 	}
 
 
