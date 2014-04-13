@@ -12,6 +12,9 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
 import android.os.Build;
@@ -42,14 +45,21 @@ public class CameraFragment extends Fragment {
     };
     private Camera.PictureCallback mJpegCallBack = new Camera.PictureCallback() {
         public void onPictureTaken(byte[] data, Camera camera) {
+        	
+//        	Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);  
+//            Matrix matrix = new Matrix();  
+//            matrix.preRotate(90);  
+//            bitmap = Bitmap.createBitmap(bitmap ,0,0, bitmap .getWidth(), bitmap .getHeight(),matrix,true);  
             // create a filename
             String filename = UUID.randomUUID().toString() + ".jpg";
             // save the jpeg data to disk
             FileOutputStream os = null;
             boolean success = true;
             try {
-                os = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
-                os.write(data);
+            	os = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
+            	os.write(data);
+            	os.flush();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, os); 
             } catch (Exception e) {
                 Log.e(TAG, "Error writing to file " + filename, e);
                 success = false;
@@ -130,6 +140,7 @@ public class CameraFragment extends Fragment {
                 mCamera.setParameters(parameters);
                 try {
                     mCamera.startPreview();
+                    mCamera.setDisplayOrientation(90);
                 } catch (Exception e) {
                     Log.e(TAG, "Could not start preview", e);
                     mCamera.release();

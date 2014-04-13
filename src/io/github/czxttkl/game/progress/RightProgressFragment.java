@@ -1,5 +1,8 @@
 package io.github.czxttkl.game.progress;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import io.github.czxttkl.game.create.CameraFragment;
 import io.github.czxttkl.game.create.PictureUtils;
 
@@ -7,6 +10,9 @@ import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -62,8 +68,17 @@ public class RightProgressFragment extends Fragment {
 			ImageView eventPic = (ImageView) mCompInfoView.findViewById(R.id.chllg_profile1_event);
 			String path = getActivity().getFileStreamPath(
 					getArguments().getString(CameraFragment.EXTRA_PHOTO_FILENAME)).getAbsolutePath();
-			BitmapDrawable b = PictureUtils.getScaledDrawable(getActivity(), path);
-			eventPic.setImageDrawable(b);
+			FileInputStream fis;
+			try {
+				fis = new FileInputStream(path);
+				Bitmap b = BitmapFactory.decodeStream(fis);
+				Matrix matrix = new Matrix();  
+				matrix.preRotate(90);  
+				b = Bitmap.createBitmap(b ,0,0, b.getWidth(), b.getHeight(),matrix,true);  
+				eventPic.setImageDrawable(new BitmapDrawable(getResources(), b));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 			
 			TextView dateTV = (TextView) mCompInfoView.findViewById(R.id.chllg_profile1_date);
 			String dateTime = getArguments().getString(UpdateFragment.TIME_DATE);

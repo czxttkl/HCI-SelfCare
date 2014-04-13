@@ -8,6 +8,8 @@ import io.github.czxttkl.game.create.ImageFragment;
 import io.github.czxttkl.game.create.Photo;
 import io.github.czxttkl.game.create.PictureUtils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -17,6 +19,9 @@ import com.actionbarsherlock.sample.shakespeare.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -192,11 +197,19 @@ public class UpdateFragment extends Fragment {
 		if (mChallenge == null)
 			return;
 		Photo p = mChallenge.getPhoto();
-		BitmapDrawable b = null;
 		if (p != null) {
 			String path = getActivity().getFileStreamPath(p.getFilename()).getAbsolutePath();
-			b = PictureUtils.getScaledDrawable(getActivity(), path);
+			FileInputStream fis;
+			try {
+				fis = new FileInputStream(path);
+				Bitmap b = BitmapFactory.decodeStream(fis);
+				Matrix matrix = new Matrix();  
+				matrix.preRotate(90);  
+				b = Bitmap.createBitmap(b ,0,0, b.getWidth(), b.getHeight(),matrix,true);  
+				mPhotoView.setImageDrawable(new BitmapDrawable(getResources(), b));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
-		mPhotoView.setImageDrawable(b);
 	}
 }
