@@ -1,5 +1,6 @@
 package io.github.czxttkl.game.progress;
 
+import io.github.czxttkl.game.create.CameraFragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +15,9 @@ import android.view.View;
 public class ProgressDetailActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	Intent i = getIntent();
+//    	String photoName = i.getExtras().getString(CameraFragment.EXTRA_PHOTO_FILENAME);
+    	Bundle photoName = i.getExtras();
         super.onCreate(savedInstanceState);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -26,7 +30,7 @@ public class ProgressDetailActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             // During initial setup, plug in the details fragment.
             RightProgressFragment details = new RightProgressFragment();
-            details.setArguments(getIntent().getExtras());
+            details.setArguments(photoName);
             
             getSupportFragmentManager()
             	.beginTransaction()

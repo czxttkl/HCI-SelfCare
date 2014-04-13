@@ -14,7 +14,6 @@ import java.util.UUID;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,7 +30,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class UpdateFragment extends Fragment{
+public class UpdateFragment extends Fragment {
 	public static final String TAG = "UpdateFragment";
 	public static final String EXTRA_CHALLENGE_ID = "criminalintent.CRIME_ID";
 	private static final int REQUEST_DATE = 0;
@@ -40,12 +39,14 @@ public class UpdateFragment extends Fragment{
 
 	private static final int REQUEST_PHOTO = 1;
 
-
 	Button mDateButton;
 	Challenge mChallenge;
 	ImageButton mPhotoButton;
 	ImageView mPhotoView;
+	Button mUploadButton;
 	
+	private String photoFilePath = null;
+
 	public static UpdateFragment newInstance(UUID challengeId) {
 		Bundle args = new Bundle();
 		args.putSerializable(EXTRA_CHALLENGE_ID, challengeId);
@@ -60,11 +61,11 @@ public class UpdateFragment extends Fragment{
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+
 		UUID challengeId = (UUID) getArguments().getSerializable(EXTRA_CHALLENGE_ID);
-//		mChallenge = ChallengeLab.get(getActivity()).getCrime(challengeId);
+		// mChallenge = ChallengeLab.get(getActivity()).getCrime(challengeId);
 		mChallenge = new Challenge();
-		
+
 		if (mChallenge == null) {
 			Log.i(TAG, "challenge is null");
 		} else {
@@ -73,35 +74,34 @@ public class UpdateFragment extends Fragment{
 
 		setHasOptionsMenu(true);
 	}
-	
+
 	public void updateDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String currentDateandTime = sdf.format(mChallenge.getDate());
-		
-        mDateButton.setText(currentDateandTime);
+
+		mDateButton.setText(currentDateandTime);
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.upload_challenge, container, false);
-		
+
 		mDateButton = (Button) v.findViewById(R.id.challenge_date);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String currentDateandTime = sdf.format(new Date(System.currentTimeMillis()));
-		
-        mDateButton.setText(currentDateandTime);
+
+		mDateButton.setText(currentDateandTime);
 		mDateButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				 FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
-				 DatePickerFragment dialog = DatePickerFragment.newInstance(new Date(System.currentTimeMillis()));
-				 dialog.setTargetFragment(UpdateFragment.this, REQUEST_DATE);
-				 dialog.show(fm, DIALOG_DATE);
+				FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
+				DatePickerFragment dialog = DatePickerFragment.newInstance(new Date(System.currentTimeMillis()));
+				dialog.setTargetFragment(UpdateFragment.this, REQUEST_DATE);
+				dialog.show(fm, DIALOG_DATE);
 			}
 		});
-		
+
 		mPhotoButton = (ImageButton) v.findViewById(R.id.challenge_imageButton);
 		mPhotoButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -126,12 +126,23 @@ public class UpdateFragment extends Fragment{
 					return;
 
 				FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
-				String path = getActivity().getFileStreamPath(p.getFilename())
-						.getAbsolutePath();
+				String path = getActivity().getFileStreamPath(p.getFilename()).getAbsolutePath();
 				ImageFragment.createInstance(path).show(fm, DIALOG_IMAGE);
 			}
 		});
-		
+
+		mUploadButton = (Button) v.findViewById(R.id.updateChallenge);
+		mUploadButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (photoFilePath != null) {
+					Intent i = new Intent(getActivity(), ProgressDetailActivity.class);
+					i.putExtra(CameraFragment.EXTRA_PHOTO_FILENAME, photoFilePath);
+					startActivity(i);
+					getActivity().finish();
+				}
+			}
+		});
+
 		return v;
 	}
 
@@ -141,22 +152,21 @@ public class UpdateFragment extends Fragment{
 		if (resultCode != Activity.RESULT_OK)
 			return;
 		if (requestCode == REQUEST_DATE) {
-			Date date = (Date) data
-					.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+			Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
 			mChallenge.setDate(date);
 			updateDate();
 		} else if (requestCode == REQUEST_PHOTO) {
 			// create a new Photo object and attach it to the crime
-			String filename = data
-					.getStringExtra(CameraFragment.EXTRA_PHOTO_FILENAME);
+			String filename = data.getStringExtra(CameraFragment.EXTRA_PHOTO_FILENAME);
+			photoFilePath = filename;
 			if (filename != null) {
 				Photo p = new Photo(filename);
 				mChallenge.setPhoto(p);
 				showPhoto();
 			}
 		}
-	}	
-	
+	}
+
 	private void showPhoto() {
 		// (re)set the image button's image based on our photo
 		if (mChallenge == null)
@@ -164,8 +174,7 @@ public class UpdateFragment extends Fragment{
 		Photo p = mChallenge.getPhoto();
 		BitmapDrawable b = null;
 		if (p != null) {
-			String path = getActivity().getFileStreamPath(p.getFilename())
-					.getAbsolutePath();
+			String path = getActivity().getFileStreamPath(p.getFilename()).getAbsolutePath();
 			b = PictureUtils.getScaledDrawable(getActivity(), path);
 		}
 		mPhotoView.setImageDrawable(b);
