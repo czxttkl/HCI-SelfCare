@@ -46,7 +46,7 @@
         <activity
             android:name="io.github.czxttkl.game.create.CameraActivity"
             android:label="Camera"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="io.github.czxttkl.game.progress.ProgressActivity"
@@ -76,7 +76,8 @@
         
         <activity
             android:name="io.github.czxttkl.game.progress.UpdateProgress"
-            android:label="Upload" >
+            android:label="Upload"
+            android:screenOrientation="portrait"  >
         </activity>
         
         <activity

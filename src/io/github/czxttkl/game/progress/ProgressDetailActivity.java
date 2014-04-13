@@ -17,7 +17,7 @@ public class ProgressDetailActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
     	Intent i = getIntent();
 //    	String photoName = i.getExtras().getString(CameraFragment.EXTRA_PHOTO_FILENAME);
-    	Bundle photoName = i.getExtras();
+    	Bundle updateInfo = i.getExtras();
         super.onCreate(savedInstanceState);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -30,7 +30,7 @@ public class ProgressDetailActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             // During initial setup, plug in the details fragment.
             RightProgressFragment details = new RightProgressFragment();
-            details.setArguments(photoName);
+            details.setArguments(updateInfo);
             
             getSupportFragmentManager()
             	.beginTransaction()

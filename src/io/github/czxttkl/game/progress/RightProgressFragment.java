@@ -63,6 +63,14 @@ public class RightProgressFragment extends Fragment {
 					getArguments().getString(CameraFragment.EXTRA_PHOTO_FILENAME)).getAbsolutePath();
 			BitmapDrawable b = PictureUtils.getScaledDrawable(getActivity(), path);
 			eventPic.setImageDrawable(b);
+			
+			TextView dateTV = (TextView) mCompInfoView.findViewById(R.id.chllg_profile1_date);
+			String dateTime = getArguments().getString(UpdateFragment.TIME_DATE);
+			dateTV.setText(dateTime);
+			
+			TextView detailTV = (TextView) mCompInfoView.findViewById(R.id.chllg_profile1_detail);
+			String detailText = getArguments().getString(UpdateFragment.DETAIL);
+			detailTV.setText(detailText);
 		}
 		return scroller;
 	}

@@ -29,6 +29,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class UpdateFragment extends Fragment {
 	public static final String TAG = "UpdateFragment";
@@ -36,6 +38,8 @@ public class UpdateFragment extends Fragment {
 	private static final int REQUEST_DATE = 0;
 	private static final String DIALOG_DATE = "date";
 	private static final String DIALOG_IMAGE = "image";
+	public static final String TIME_DATE = "timedate";
+	public static final String DETAIL = "details";
 
 	private static final int REQUEST_PHOTO = 1;
 
@@ -44,8 +48,10 @@ public class UpdateFragment extends Fragment {
 	ImageButton mPhotoButton;
 	ImageView mPhotoView;
 	Button mUploadButton;
-	
+	TextView mDetailTextView;
+
 	private String photoFilePath = null;
+	private String currentDateandTime = null;
 
 	public static UpdateFragment newInstance(UUID challengeId) {
 		Bundle args = new Bundle();
@@ -77,7 +83,7 @@ public class UpdateFragment extends Fragment {
 
 	public void updateDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String currentDateandTime = sdf.format(mChallenge.getDate());
+		currentDateandTime = sdf.format(mChallenge.getDate());
 
 		mDateButton.setText(currentDateandTime);
 	}
@@ -86,11 +92,12 @@ public class UpdateFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.upload_challenge, container, false);
+		mDetailTextView = (TextView) v.findViewById(R.id.update_detail);
 
 		mDateButton = (Button) v.findViewById(R.id.challenge_date);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String currentDateandTime = sdf.format(new Date(System.currentTimeMillis()));
+		currentDateandTime = sdf.format(new Date(System.currentTimeMillis()));
 
 		mDateButton.setText(currentDateandTime);
 		mDateButton.setOnClickListener(new View.OnClickListener() {
@@ -134,12 +141,25 @@ public class UpdateFragment extends Fragment {
 		mUploadButton = (Button) v.findViewById(R.id.updateChallenge);
 		mUploadButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (photoFilePath != null) {
-					Intent i = new Intent(getActivity(), ProgressDetailActivity.class);
-					i.putExtra(CameraFragment.EXTRA_PHOTO_FILENAME, photoFilePath);
-					startActivity(i);
-					getActivity().finish();
+				if (photoFilePath == null) {
+					Toast toast = Toast.makeText(getActivity(), "Please upload a photo.", Toast.LENGTH_LONG);
+					toast.show();
+					return;
 				}
+				String detailText = mDetailTextView.getText().toString();
+				if (detailText.equals("")) {
+					Toast toast = Toast.makeText(getActivity(), "Please fill in details.", Toast.LENGTH_LONG);
+					toast.show();
+					return;
+				}
+
+				Intent i = new Intent(getActivity(), ProgressDetailActivity.class);
+				i.putExtra(CameraFragment.EXTRA_PHOTO_FILENAME, photoFilePath);
+				i.putExtra(UpdateFragment.TIME_DATE, currentDateandTime);
+				i.putExtra(UpdateFragment.DETAIL, detailText);
+				startActivity(i);
+				getActivity().finish();
+
 			}
 		});
 
