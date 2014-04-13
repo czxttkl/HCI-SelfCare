@@ -14,6 +14,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -72,6 +73,10 @@ public class RightProgressFragment extends Fragment {
 			String detailText = getArguments().getString(UpdateFragment.DETAIL);
 			detailTV.setText(detailText);
 		}
+		
+		EditText replyEditText = (EditText)mCompInfoView.findViewById(R.id.chllg_profile1_reply_edittext);
+		replyEditText.clearFocus(); 
+		
 		return scroller;
 	}
 

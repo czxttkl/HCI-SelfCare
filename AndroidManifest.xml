@@ -26,7 +26,7 @@
 
     <application
         android:icon="@drawable/icon"
-        android:label="@string/application_label"
+        android:label="CoolCare"
         android:largeHeap="true"
         android:theme="@style/Theme.Sherlock.Light" >
         <activity
