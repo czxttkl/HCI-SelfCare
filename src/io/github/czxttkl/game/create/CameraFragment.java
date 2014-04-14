@@ -29,165 +29,215 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class CameraFragment extends Fragment {
-    private static final String TAG = "ChallengeCameraFragment";
+	private static final String TAG = "ChallengeCameraFragment";
+	public static final String USING_CAMERA = "UsingCamera";
+	public static final String EXTRA_PHOTO_FILENAME = "info.shangma.hci.photo_filename";
+	public static final String EXTRA_CAMERA_SWITCH = "SwitchingCamera";
+	public static final int FRONT_CAMERA = 1;
+	public static final int BACK_CAMERA = 0;
+	private Camera mCamera;
+	private int cameraId;
+	private SurfaceView mSurfaceView;
+	private View mProgressContainer;
 
-    public static final String EXTRA_PHOTO_FILENAME = "info.shangma.hci.photo_filename";
+	private Camera.ShutterCallback mShutterCallback = new Camera.ShutterCallback() {
+		public void onShutter() {
+			// display the progress indicator
+			mProgressContainer.setVisibility(View.VISIBLE);
+		}
+	};
+	private Camera.PictureCallback mJpegCallBack = new Camera.PictureCallback() {
+		public void onPictureTaken(byte[] data, Camera camera) {
 
-    private Camera mCamera;
-    private SurfaceView mSurfaceView;
-    private View mProgressContainer;
+			// Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0,
+			// data.length);
+			// Matrix matrix = new Matrix();
+			// matrix.preRotate(90);
+			// bitmap = Bitmap.createBitmap(bitmap ,0,0, bitmap .getWidth(),
+			// bitmap .getHeight(),matrix,true);
+			// create a filename
+			String filename = UUID.randomUUID().toString() + ".jpg";
+			// save the jpeg data to disk
+			FileOutputStream os = null;
+			boolean success = true;
+			try {
+				os = getActivity().openFileOutput(filename,
+						Context.MODE_PRIVATE);
+				os.write(data);
+				os.flush();
+				// bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+			} catch (Exception e) {
+				Log.e(TAG, "Error writing to file " + filename, e);
+				success = false;
+			} finally {
+				try {
+					if (os != null)
+						os.close();
+				} catch (Exception e) {
+					Log.e(TAG, "Error closing file " + filename, e);
+					success = false;
+				}
+			}
 
-    private Camera.ShutterCallback mShutterCallback = new Camera.ShutterCallback() {
-        public void onShutter() {
-            // display the progress indicator
-            mProgressContainer.setVisibility(View.VISIBLE);
-        }
-    };
-    private Camera.PictureCallback mJpegCallBack = new Camera.PictureCallback() {
-        public void onPictureTaken(byte[] data, Camera camera) {
-        	
-//        	Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);  
-//            Matrix matrix = new Matrix();  
-//            matrix.preRotate(90);  
-//            bitmap = Bitmap.createBitmap(bitmap ,0,0, bitmap .getWidth(), bitmap .getHeight(),matrix,true);  
-            // create a filename
-            String filename = UUID.randomUUID().toString() + ".jpg";
-            // save the jpeg data to disk
-            FileOutputStream os = null;
-            boolean success = true;
-            try {
-            	os = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
-            	os.write(data);
-            	os.flush();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, os); 
-            } catch (Exception e) {
-                Log.e(TAG, "Error writing to file " + filename, e);
-                success = false;
-            } finally {
-                try {
-                    if (os != null)
-                        os.close();
-                } catch (Exception e) {
-                    Log.e(TAG, "Error closing file " + filename, e);
-                    success = false;
-                } 
-            }
-            
-            if (success) {
-                // set the photo filename on the result intent
-                if (success) {
-                    Intent i = new Intent();
-                    i.putExtra(EXTRA_PHOTO_FILENAME, filename);
-                    getActivity().setResult(Activity.RESULT_OK, i);
-                } else {
-                    getActivity().setResult(Activity.RESULT_CANCELED);
-                }
-            }
-            getActivity().finish();
-        }
-    };
+			if (success) {
+				// set the photo filename on the result intent
+				if (success) {
+					Intent i = new Intent();
+					i.putExtra(EXTRA_PHOTO_FILENAME, filename);
+					i.putExtra(EXTRA_CAMERA_SWITCH, false);
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_camera, parent, false);
+					getActivity().setResult(Activity.RESULT_OK, i);
+				} else {
+					getActivity().setResult(Activity.RESULT_CANCELED);
+				}
+			}
+			getActivity().finish();
+		}
+	};
 
-        mProgressContainer = v.findViewById(R.id.camera_progressContainer);
-        mProgressContainer.setVisibility(View.INVISIBLE);
-        Button takePictureButton = (Button)v.findViewById(R.id.camera_takePictureButton);
-        takePictureButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (mCamera != null) {
-            	    mCamera.takePicture(mShutterCallback, null, mJpegCallBack);
-            	}
-            } 
-        });
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		cameraId = getArguments().getInt(USING_CAMERA);
 
-        mSurfaceView = (SurfaceView)v.findViewById(R.id.camera_surfaceView);
-        SurfaceHolder holder = mSurfaceView.getHolder();
-        // deprecated, but required for pre-3.0 devices
-        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        holder.addCallback(new SurfaceHolder.Callback() {
+	}
 
-            public void surfaceCreated(SurfaceHolder holder) {
-                // tell the camera to use this surface as its preview area
-                try {
-                    if (mCamera != null) {
-                        mCamera.setPreviewDisplay(holder);
-                    }
-                } catch (IOException exception) {
-                    Log.e(TAG, "Error setting up preview display", exception);
-                }
-            }
+	@Override
+	@SuppressWarnings("deprecation")
+	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+			Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.fragment_camera, parent, false);
 
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                // we can no longer display on this surface, so stop the preview.
-                if (mCamera != null) {
-                    mCamera.stopPreview();
-                }
-            }
+		mProgressContainer = v.findViewById(R.id.camera_progressContainer);
+		mProgressContainer.setVisibility(View.INVISIBLE);
+		Button takePictureButton = (Button) v
+				.findViewById(R.id.camera_takePictureButton);
+		takePictureButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if (mCamera != null) {
+					mCamera.takePicture(mShutterCallback, null, mJpegCallBack);
+				}
+			}
+		});
 
-            @SuppressLint("NewApi")
-			public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
-            	if (mCamera == null) return;
-            	
-                // the surface has changed size; update the camera preview size
-                Camera.Parameters parameters = mCamera.getParameters();
-                Size s = getBestSupportedSize(parameters.getSupportedPreviewSizes(), w, h);
-                parameters.setPreviewSize(s.width, s.height);
-                s = getBestSupportedSize(parameters.getSupportedPictureSizes(), w, h);
-                parameters.setPictureSize(s.width, s.height);
-                mCamera.setParameters(parameters);
-                try {
-                    mCamera.startPreview();
-                    mCamera.setDisplayOrientation(90);
-                } catch (Exception e) {
-                    Log.e(TAG, "Could not start preview", e);
-                    mCamera.release();
-                    mCamera = null;
-                }
-            }
-        });
-        
-        return v; 
-    }
+		Button switchCamera = (Button) v.findViewById(R.id.camera_switchButton);
+		switchCamera.setOnClickListener(new View.OnClickListener() {
 
-    @TargetApi(9)
-    @Override
-    public void onResume() {
-        super.onResume();
-        
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {    
-            mCamera = Camera.open(0);
-        } else {
-            mCamera = Camera.open();
-        }
-    }
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				switchCamera();
+			}
+		});
+		
+		mSurfaceView = (SurfaceView) v.findViewById(R.id.camera_surfaceView);
+		SurfaceHolder holder = mSurfaceView.getHolder();
+		// deprecated, but required for pre-3.0 devices
+		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+		holder.addCallback(new SurfaceHolder.Callback() {
 
-    @Override
-    public void onPause() {
-        super.onPause();
+			public void surfaceCreated(SurfaceHolder holder) {
+				// tell the camera to use this surface as its preview area
+				try {
+					if (mCamera != null) {
+						mCamera.setPreviewDisplay(holder);
+					}
+				} catch (IOException exception) {
+					Log.e(TAG, "Error setting up preview display", exception);
+				}
+			}
 
-        if (mCamera != null) {
-            mCamera.release();
-            mCamera = null;
-        }
-    }
+			public void surfaceDestroyed(SurfaceHolder holder) {
+				// we can no longer display on this surface, so stop the
+				// preview.
+				if (mCamera != null) {
+					mCamera.stopPreview();
+				}
+			}
 
-    /** a simple algorithm to get the largest size available. For a more 
-     * robust version, see CameraPreview.java in the ApiDemos 
-     * sample app from Android. */
-    private Size getBestSupportedSize(List<Size> sizes, int width, int height) {
-        Size bestSize = sizes.get(0);
-        int largestArea = bestSize.width * bestSize.height;
-        for (Size s : sizes) {
-            int area = s.width * s.height;
-            if (area > largestArea) {
-                bestSize = s;
-                largestArea = area;
-            }
-        }
-        return bestSize;
-    }
-    
+			@SuppressLint("NewApi")
+			public void surfaceChanged(SurfaceHolder holder, int format, int w,
+					int h) {
+				if (mCamera == null)
+					return;
+
+				// the surface has changed size; update the camera preview size
+				Camera.Parameters parameters = mCamera.getParameters();
+				Size s = getBestSupportedSize(
+						parameters.getSupportedPreviewSizes(), w, h);
+				parameters.setPreviewSize(s.width, s.height);
+				s = getBestSupportedSize(parameters.getSupportedPictureSizes(),
+						w, h);
+				parameters.setPictureSize(s.width, s.height);
+				mCamera.setParameters(parameters);
+				try {
+					mCamera.startPreview();
+					mCamera.setDisplayOrientation(90);
+				} catch (Exception e) {
+					Log.e(TAG, "Could not start preview", e);
+					mCamera.release();
+					mCamera = null;
+				}
+			}
+		});
+
+		return v;
+	}
+	
+	@TargetApi(9)
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		if (cameraId == 0) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+				mCamera = Camera.open(0);
+			} else {
+				mCamera = Camera.open();
+			}
+		} else {
+			mCamera = Camera.open(1);
+		}
+
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+
+		if (mCamera != null) {
+			mCamera.release();
+			mCamera = null;
+		}
+	}
+
+	/**
+	 * a simple algorithm to get the largest size available. For a more robust
+	 * version, see CameraPreview.java in the ApiDemos sample app from Android.
+	 */
+	private Size getBestSupportedSize(List<Size> sizes, int width, int height) {
+		Size bestSize = sizes.get(0);
+		int largestArea = bestSize.width * bestSize.height;
+		for (Size s : sizes) {
+			int area = s.width * s.height;
+			if (area > largestArea) {
+				bestSize = s;
+				largestArea = area;
+			}
+		}
+		return bestSize;
+	}
+	
+	private void switchCamera() {
+		
+		Intent i = new Intent();
+		i.putExtra(EXTRA_CAMERA_SWITCH, true);
+		getActivity().setResult(Activity.RESULT_OK, i);
+		getActivity().finish();
+
+	}
+
 }

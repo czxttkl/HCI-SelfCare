@@ -65,8 +65,9 @@ public class ChallengeFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
-		mChallenge = ChallengeLab.get(getActivity()).getCrime(crimeId);
-
+//		mChallenge = ChallengeLab.get(getActivity()).getCrime(crimeId);
+		mChallenge = new Challenge();
+		
 		if (mChallenge == null) {
 			Log.i(TAG, "challenge is null");
 		} else {
@@ -217,14 +218,29 @@ public class ChallengeFragment extends Fragment {
 			 mChallenge.setDate(date);
 			updateDate();
 		} else if (requestCode == REQUEST_PHOTO) {
-			// create a new Photo object and attach it to the crime
-			String filename = data
-					.getStringExtra(CameraFragment.EXTRA_PHOTO_FILENAME);
-			if (filename != null) {
-				Photo p = new Photo(filename);
-				mChallenge.setPhoto(p);
-				showPhoto();
+			Log.i(TAG, "result ok photo");
+
+			String value =  data.getStringExtra(CameraFragment.EXTRA_CAMERA_SWITCH);
+			Log.i(TAG, value  + "photo");
+			boolean switchCamera = data.getBooleanExtra(CameraFragment.EXTRA_CAMERA_SWITCH, false);
+
+			if (switchCamera) {
+				Log.i(TAG, "switching photo");
+				Intent i = new Intent(getActivity(), CameraActivity.class);
+				i.putExtra(CameraActivity.SWITCH_CAMERA, true);
+				startActivityForResult(i, REQUEST_PHOTO);
+				
+			} else {
+				// create a new Photo object and attach it to the crime
+				String filename = data
+						.getStringExtra(CameraFragment.EXTRA_PHOTO_FILENAME);
+				if (filename != null) {
+					Photo p = new Photo(filename);
+					mChallenge.setPhoto(p);
+					showPhoto();
+				}
 			}
+			
 		}
 	}
 
