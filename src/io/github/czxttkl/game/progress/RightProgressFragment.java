@@ -8,6 +8,7 @@ import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
 import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.create.PictureUtils;
+import io.github.czxttkl.game.graph.GraphActivity;
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 
@@ -71,6 +72,8 @@ public class RightProgressFragment extends Fragment {
 		switch (item.getItemId()) {
 		case R.id.chartBtnOnMeu:
 			// do something //
+			Intent i = new Intent(getActivity(), GraphActivity.class);
+			startActivity(i);
 			return true;
 
 		default:
