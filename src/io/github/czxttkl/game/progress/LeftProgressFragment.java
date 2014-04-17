@@ -141,7 +141,7 @@ public class LeftProgressFragment extends ListFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// TODO Auto-generated method stub
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.new_challenge_list, menu);
+//		inflater.inflate(R.menu.new_challenge_list, menu);
 		inflater.inflate(R.menu.help_on_menu, menu);
 
 	}

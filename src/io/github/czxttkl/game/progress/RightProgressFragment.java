@@ -4,7 +4,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import io.github.czxttkl.game.create.CameraFragment;
+import io.github.czxttkl.game.create.Challenge;
+import io.github.czxttkl.game.create.ChallengeActivity;
+import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.create.PictureUtils;
+import io.github.czxttkl.game.help.HelpViewpager;
+import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
@@ -16,8 +21,11 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.Menu;
+import android.support.v4.view.MenuItem;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -40,6 +48,34 @@ public class RightProgressFragment extends Fragment {
 		f.setArguments(args);
 
 		return f;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// TODO Auto-generated method stub
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.chart_on_menu, menu);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+		setHasOptionsMenu(true);
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case R.id.chartBtnOnMeu:
+			// do something //
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override
