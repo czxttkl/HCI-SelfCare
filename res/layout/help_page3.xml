@@ -19,13 +19,13 @@
               /> -->
 
          <TextView
-              android:padding="50dp"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_alignParentTop="true"
-             android:layout_centerHorizontal="true"
-             android:layout_marginTop="28dp"
+             android:layout_alignParentBottom="true"
+             android:layout_alignParentLeft="true"
+             android:layout_marginBottom="33dp"
              android:gravity="center_horizontal"
+             android:padding="50dp"
              android:text="@string/helptext3"
              android:textColor="#000"
              android:textSize="18sp" />

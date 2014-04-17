@@ -82,7 +82,8 @@
         
         <activity
             android:name="io.github.czxttkl.game.help.HelpViewpager"
-            android:label="Help" >
+            android:label="Help" 
+            android:screenOrientation="portrait">
         </activity>
         
         <activity
