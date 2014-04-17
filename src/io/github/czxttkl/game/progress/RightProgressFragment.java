@@ -71,6 +71,8 @@ public class RightProgressFragment extends Fragment {
 		switch (item.getItemId()) {
 		case R.id.chartBtnOnMeu:
 			// do something //
+			Intent i = new Intent(getActivity(), GraphActivity.class);
+			startActivity(i);
 			return true;
 
 		default:

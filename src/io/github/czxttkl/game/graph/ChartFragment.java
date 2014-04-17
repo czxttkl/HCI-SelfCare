@@ -50,7 +50,6 @@ public class ChartFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.help_on_menu, menu);
-
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
