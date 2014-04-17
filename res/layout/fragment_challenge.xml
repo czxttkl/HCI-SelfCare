@@ -5,113 +5,123 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" >
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal" 
+        android:gravity="center_vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/crime_imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/darker_gray"
+            android:cropToPadding="true"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/crime_imageButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/plus_space" />
+
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
-            android:orientation="vertical" >
+            android:text="Upload Photo"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/crime_imageView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@android:color/darker_gray"
-                android:cropToPadding="true"
-                android:scaleType="centerInside" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical" >
 
-            <ImageButton
-                android:id="@+id/crime_imageButton"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/text_title"
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title   " />
+
+            <EditText
+                android:id="@+id/crime_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_camera" />
-        </LinearLayout>
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/text_title"
+                android:lines="1"
+                android:singleLine="true" />
+        </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/text_location"
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location" />
+
+            <EditText
+                android:id="@+id/edit_location"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/text_location"
+                android:lines="1"
+                android:singleLine="true" />
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/text_title"
-                    style="?android:listSeparatorTextViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Title" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-                <EditText
-                    android:id="@+id/crime_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/text_title"
-                    android:lines="1"
-                    android:singleLine="true" />
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/text_freq"
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frequnce" />
 
-            <RelativeLayout
+            <EditText
+                android:id="@+id/edit_freq"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:id="@+id/text_location"
-                    style="?android:listSeparatorTextViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Location" />
-
-                <EditText
-                    android:id="@+id/edit_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/text_location"
-                    android:lines="1"
-                    android:singleLine="true" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:id="@+id/text_freq"
-                    style="?android:listSeparatorTextViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Frequnce" />
-
-                <EditText
-                    android:id="@+id/edit_freq"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/text_freq"
-                    android:lines="1"
-                    android:singleLine="true" />
-            </RelativeLayout>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/text_freq"
+                android:lines="1"
+                android:singleLine="true" />
+        </RelativeLayout>
     </LinearLayout>
 
     <TextView
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Detail" />
+        android:text="Detail" 
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
 
     <EditText
         android:id="@+id/crime_title"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_weight="2"
         android:inputType="textMultiLine" />
@@ -146,23 +156,23 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >     
-        
+        android:layout_height="match_parent" >
+
         <TextView
             android:id="@+id/text_date"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-            android:textStyle="bold"
-            android:text="From" />
-        
+            android:text="From"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/calendar"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@id/text_date"
             android:src="@drawable/calendar" />
 

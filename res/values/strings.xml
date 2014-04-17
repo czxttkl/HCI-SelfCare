@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="application_label">Bistro</string>
-      <string name="date_picker_title">Date of crime:</string>
+    <string name="application_label">CoolCare</string>
+      <string name="date_picker_title">Pick a start time:</string>
     <string name="activity_titles">Competitions</string>
-    <string name="activity_details">Shakespeare Details</string>
+    <string name="activity_details">CoolCare</string>
     
     
     
@@ -23,7 +23,7 @@
      <string name="helptext2">This screen looks a lot like the "browse challenges" screen, except it displays the challenges you are involved with. Click on a challenge to see the latest updates.</string>
      <string name="helptext3">Here, you can find a challenge to join. There is a green plus sign here to in case you get inspired and want to create a new challenge immediately.</string>
      <string name="helptext4">Explore the graph that displays challenges completed per week, and updates made per week. </string>
-     <string name="helptext5">The title and location fields let you specify a title and location for the challenge. Frequency lets you set how often progress should be uploaded. Do not forget to tag your challenge.</string>
+     <string name="helptext5">The title and location fields let you specify a title and location for the challenge. Frequency lets you set how often progress should be uploaded. </string>
      
      
      

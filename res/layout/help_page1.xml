@@ -11,12 +11,12 @@
         android:background="@drawable/help_view1" />
 
           <TextView
-              android:padding="50dp"
+              android:padding="40dp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_alignParentBottom="true"
               android:layout_centerHorizontal="true"
-              android:layout_marginBottom="51dp"
+              android:layout_marginBottom="151dp"
               android:text="@string/helptext1"
               android:textColor="#000"
               android:textSize="18sp" />
