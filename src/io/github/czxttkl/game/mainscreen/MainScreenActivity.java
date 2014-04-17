@@ -1,12 +1,12 @@
 package io.github.czxttkl.game.mainscreen;
 
-import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
 import io.github.czxttkl.game.create.ChallengeFragment;
-import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.graph.GraphActivity;
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.join.JoinActivity;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.ChallengeLab;
 import io.github.czxttkl.game.progress.ProgressActivity;
 
 import com.actionbarsherlock.sample.shakespeare.R;
@@ -65,7 +65,7 @@ public class MainScreenActivity extends Activity {
 			public void onClick(DialogInterface dialog, int item) {
 				if (item == 0) {
 					Challenge crime = new Challenge();
-					ChallengeLab.get(getApplicationContext()).addCrime(crime);
+					ChallengeLab.get(getApplicationContext()).addChallenge(crime);
 					Intent i = new Intent();
 	                i.putExtra(ChallengeFragment.EXTRA_CRIME_ID, crime.getId());
 					i.setComponent(new ComponentName(MainScreenActivity.this, ChallengeActivity.class));

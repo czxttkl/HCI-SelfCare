@@ -118,7 +118,7 @@
         android:layout_marginRight="16dp"/>
 
     <EditText
-        android:id="@+id/crime_title"
+        android:id="@+id/challenge_detail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
@@ -186,7 +186,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/crime_date"
+        android:id="@+id/create_challenge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

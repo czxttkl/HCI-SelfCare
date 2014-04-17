@@ -1,4 +1,4 @@
-package io.github.czxttkl.game.create;
+package io.github.czxttkl.game.model;
 
 import java.io.Serializable;
 

@@ -2,11 +2,11 @@ package io.github.czxttkl.game.progress;
 
 import io.github.czxttkl.game.create.CameraActivity;
 import io.github.czxttkl.game.create.CameraFragment;
-import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.DatePickerFragment;
 import io.github.czxttkl.game.create.ImageFragment;
-import io.github.czxttkl.game.create.Photo;
-import io.github.czxttkl.game.create.PictureUtils;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.Photo;
+import io.github.czxttkl.game.model.PictureUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -88,7 +88,7 @@ public class UpdateFragment extends Fragment {
 
 	public void updateDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		currentDateandTime = sdf.format(mChallenge.getDate());
+		currentDateandTime = sdf.format(mChallenge.getStartDate());
 
 		mDateButton.setText(currentDateandTime);
 	}
@@ -178,7 +178,7 @@ public class UpdateFragment extends Fragment {
 			return;
 		if (requestCode == REQUEST_DATE) {
 			Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-			mChallenge.setDate(date);
+			mChallenge.setStartDate(date);
 			updateDate();
 		} else if (requestCode == REQUEST_PHOTO) {
 			// create a new Photo object and attach it to the crime

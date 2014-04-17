@@ -1,5 +1,6 @@
 package io.github.czxttkl.game.create;
 
+import io.github.czxttkl.game.model.PictureUtils;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;

@@ -1,9 +1,9 @@
 package io.github.czxttkl.game.graph;
 
-import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
-import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.ChallengeLab;
 import io.github.czxttkl.game.progress.ProgressActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,7 +32,7 @@ public class GraphActivity extends Activity{
 			public void onClick(DialogInterface dialog, int item) {
 				if (item == 0) {
 					Challenge crime = new Challenge();
-					ChallengeLab.get(GraphActivity.this).addCrime(crime);
+					ChallengeLab.get(GraphActivity.this).addChallenge(crime);
 					Intent i = new Intent();
 					i.setComponent(new ComponentName(GraphActivity.this, ChallengeActivity.class));
 					startActivity(i);

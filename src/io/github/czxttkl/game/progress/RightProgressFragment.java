@@ -4,12 +4,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import io.github.czxttkl.game.create.CameraFragment;
-import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
-import io.github.czxttkl.game.create.ChallengeLab;
-import io.github.czxttkl.game.create.PictureUtils;
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.ChallengeLab;
+import io.github.czxttkl.game.model.PictureUtils;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
@@ -123,6 +123,7 @@ public class RightProgressFragment extends Fragment {
 			TextView detailTV = (TextView) mCompInfoView.findViewById(R.id.chllg_profile1_detail);
 			String detailText = getArguments().getString(UpdateFragment.DETAIL);
 			detailTV.setText(detailText);
+			
 		}
 		
 		EditText replyEditText = (EditText)mCompInfoView.findViewById(R.id.chllg_profile1_reply_edittext);

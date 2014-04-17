@@ -2,6 +2,10 @@ package io.github.czxttkl.game.create;
 
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.ChallengeLab;
+import io.github.czxttkl.game.model.Photo;
+import io.github.czxttkl.game.model.PictureUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +39,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ChallengeFragment extends Fragment {
 	public static final String TAG = "ChallengeFragment";
@@ -46,9 +51,14 @@ public class ChallengeFragment extends Fragment {
 
 	Challenge mChallenge;
 	EditText mTitleField;
+	EditText mLocation;
+	EditText mFreq;
+	EditText mDetail;
 	Button mDateButton;
 	ImageButton mPhotoButton;
 	ImageView mPhotoView;
+
+	Button mCreatChallenge;
 
 	public static ChallengeFragment newInstance(UUID crimeId) {
 		Bundle args = new Bundle();
@@ -64,24 +74,24 @@ public class ChallengeFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
-//		mChallenge = ChallengeLab.get(getActivity()).getCrime(crimeId);
-		mChallenge = new Challenge();
-		
+		UUID challengeId = (UUID) getArguments()
+				.getSerializable(EXTRA_CRIME_ID);
+		mChallenge = ChallengeLab.get(getActivity()).getChallenge(challengeId);
+
 		if (mChallenge == null) {
 			Log.i(TAG, "challenge is null");
 		} else {
 			Log.i(TAG, "challenge is not null");
 		}
-		
+
 		setHasOptionsMenu(true);
 	}
 
 	public void updateDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String currentDateandTime = sdf.format(mChallenge.getDate());
-		
-        mDateButton.setText(currentDateandTime);
+		String currentDateandTime = sdf.format(mChallenge.getStartDate());
+
+		mDateButton.setText(currentDateandTime);
 	}
 
 	@Override
@@ -89,7 +99,6 @@ public class ChallengeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_challenge, parent, false);
-
 
 		mTitleField = (EditText) v.findViewById(R.id.crime_title);
 		mTitleField.addTextChangedListener(new TextWatcher() {
@@ -108,18 +117,69 @@ public class ChallengeFragment extends Fragment {
 			}
 		});
 
+		mFreq = (EditText) v.findViewById(R.id.edit_freq);
+		mFreq.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				mChallenge.setFreq(mFreq.getText().toString());
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+		mLocation = (EditText) v.findViewById(R.id.edit_location);
+		mLocation.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				mChallenge.setLocation(mLocation.toString());
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
 		mDateButton = (Button) v.findViewById(R.id.challenge_date);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String currentDateandTime = sdf.format(new Date(System.currentTimeMillis()));
-		
-        mDateButton.setText(currentDateandTime);
+		String currentDateandTime = sdf.format(new Date(System
+				.currentTimeMillis()));
+
+		mDateButton.setText(currentDateandTime);
 		mDateButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				 FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
-				 DatePickerFragment dialog = DatePickerFragment.newInstance(new Date(System.currentTimeMillis()));
-				 dialog.setTargetFragment(ChallengeFragment.this, REQUEST_DATE);
-				 dialog.show(fm, DIALOG_DATE);
+				FragmentManager fm = ((FragmentActivity) getActivity())
+						.getSupportFragmentManager();
+				DatePickerFragment dialog = DatePickerFragment
+						.newInstance(new Date(System.currentTimeMillis()));
+				dialog.setTargetFragment(ChallengeFragment.this, REQUEST_DATE);
+				dialog.show(fm, DIALOG_DATE);
 			}
 		});
 
@@ -146,10 +206,44 @@ public class ChallengeFragment extends Fragment {
 				if (p == null)
 					return;
 
-				FragmentManager fm = ((FragmentActivity) getActivity()).getSupportFragmentManager();
+				FragmentManager fm = ((FragmentActivity) getActivity())
+						.getSupportFragmentManager();
 				String path = getActivity().getFileStreamPath(p.getFilename())
 						.getAbsolutePath();
 				ImageFragment.createInstance(path).show(fm, DIALOG_IMAGE);
+			}
+		});
+		
+		mDetail = (EditText) v.findViewById(R.id.challenge_detail);
+		mDetail.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// TODO Auto-generated method stub
+				mChallenge.setDetails(mDetail.getText().toString());
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+		mCreatChallenge = (Button) v.findViewById(R.id.create_challenge);
+		mCreatChallenge.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				getActivity().finish();
 			}
 		});
 
@@ -215,21 +309,23 @@ public class ChallengeFragment extends Fragment {
 		if (requestCode == REQUEST_DATE) {
 			Date date = (Date) data
 					.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-			 mChallenge.setDate(date);
+			mChallenge.setStartDate(date);
 			updateDate();
 		} else if (requestCode == REQUEST_PHOTO) {
 			Log.i(TAG, "result ok photo");
 
-			String value =  data.getStringExtra(CameraFragment.EXTRA_CAMERA_SWITCH);
-			Log.i(TAG, value  + "photo");
-			boolean switchCamera = data.getBooleanExtra(CameraFragment.EXTRA_CAMERA_SWITCH, false);
+			String value = data
+					.getStringExtra(CameraFragment.EXTRA_CAMERA_SWITCH);
+			Log.i(TAG, value + "photo");
+			boolean switchCamera = data.getBooleanExtra(
+					CameraFragment.EXTRA_CAMERA_SWITCH, false);
 
 			if (switchCamera) {
 				Log.i(TAG, "switching photo");
 				Intent i = new Intent(getActivity(), CameraActivity.class);
 				i.putExtra(CameraActivity.SWITCH_CAMERA, true);
 				startActivityForResult(i, REQUEST_PHOTO);
-				
+
 			} else {
 				// create a new Photo object and attach it to the crime
 				String filename = data
@@ -240,14 +336,14 @@ public class ChallengeFragment extends Fragment {
 					showPhoto();
 				}
 			}
-			
+
 		}
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		ChallengeLab.get(getActivity()).saveCrimes();
+		ChallengeLab.get(getActivity()).saveChallenges();
 	}
 
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
-import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.ChallengeLab;
 
 import com.actionbarsherlock.sample.shakespeare.R;
 import com.actionbarsherlock.sample.shakespeare.Shakespeare;
@@ -158,7 +158,7 @@ public class LeftProgressFragment extends ListFragment {
 		switch (item.getItemId()) {
 		case R.id.menu_item_new_challenge:
 			Challenge crime = new Challenge();
-			ChallengeLab.get(getActivity()).addCrime(crime);
+			ChallengeLab.get(getActivity()).addChallenge(crime);
 			Intent i = new Intent(getActivity(), ChallengeActivity.class);
 			startActivity(i);
 			getActivity().finish();

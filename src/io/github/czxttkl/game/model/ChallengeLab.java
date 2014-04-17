@@ -1,6 +1,7 @@
-package io.github.czxttkl.game.create;
+package io.github.czxttkl.game.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 import android.content.Context;
@@ -25,6 +26,9 @@ public class ChallengeLab {
 			mChallenges = mSerializer.loadChallenges();
 		} catch (Exception e) {
 			mChallenges = new ArrayList<Challenge>();
+			
+			// default items in the list
+
 			Log.e(TAG, "Error loading crimes: ", e);
 		}
 	}
@@ -36,7 +40,7 @@ public class ChallengeLab {
 		return sCrimeLab;
 	}
 
-	public Challenge getCrime(UUID id) {
+	public Challenge getChallenge(UUID id) {
 		for (Challenge c : mChallenges) {
 			if (c.getId().equals(id))
 				return c;
@@ -44,21 +48,21 @@ public class ChallengeLab {
 		return null;
 	}
 
-	public void addCrime(Challenge c) {
+	public void addChallenge(Challenge c) {
 		mChallenges.add(c);
-		saveCrimes();
+		saveChallenges();
 	}
 
-	public ArrayList<Challenge> getCrimes() {
+	public ArrayList<Challenge> getChallenges() {
 		return mChallenges;
 	}
 
-	public void deleteCrime(Challenge c) {
+	public void deleteChallenge(Challenge c) {
 		mChallenges.remove(c);
-		saveCrimes();
+		saveChallenges();
 	}
 
-	public boolean saveCrimes() {
+	public boolean saveChallenges() {
 		try {
 			mSerializer.saveCrimes(mChallenges);
 			Log.d(TAG, "crimes saved to file");

@@ -1,14 +1,19 @@
 package io.github.czxttkl.game.join;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
-import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
-import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.ChallengeLab;
+import io.github.czxttkl.game.model.Photo;
+import io.github.czxttkl.game.model.PictureUtils;
 import io.github.czxttkl.game.progress.ProgressDetailActivity;
 
 import com.actionbarsherlock.sample.shakespeare.R;
@@ -16,76 +21,114 @@ import com.actionbarsherlock.sample.shakespeare.Shakespeare;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class LeftJoinFragment extends ListFragment {
+	
+	private static final String TAG = "LeftJoinFragment";
 	boolean mHasDetailsFrame;
 	int mPositionChecked = 0;
 	int mPositionShown = -1;
 
-	// Array of strings storing country names
-	String[] names = new String[] { "Workout Hard", "Read books every day", "Let's meditation", "Yoga yoga!",
-			"Party every weekend", };
-
-	// Array of integers points to images stored in /res/drawable/
-	int[] chllgprofiles = new int[] { R.drawable.flag1, R.drawable.flag2, R.drawable.flag3, R.drawable.flag4,
-			R.drawable.flag5, };
-
-	// Array of strings to store currencies
-	String[] descriptions = new String[] { "Workout hard every 3 days", "Pakistani Rupee", "Sri Lankan Rupee",
-			"Renminbi", "Bangladeshi Taka", };
-
-	// Colors
-	int[] colorbars = new int[] { R.drawable.physical, R.drawable.mental, R.drawable.mental, R.drawable.physical,
-			R.drawable.social };
+	private ArrayList<Challenge> mChallenges;
+	static ChallengeAdapter mAdapter;
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		showDetails(position);
 	}
 
+	class ChallengeAdapter extends ArrayAdapter<Challenge> {
+
+		public ChallengeAdapter(ArrayList<Challenge> challenges) {
+			super(getActivity(), 0, challenges);
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			if (convertView == null) {
+				convertView = getActivity().getLayoutInflater().inflate(
+						R.layout.list_item_challenge, null);
+			}
+
+			Challenge c = getItem(position);
+
+			Random rand = new Random();
+
+			int i = rand.nextInt(3) + 1;
+			
+			Log.i(TAG, "The random number is: " + i);
+
+			ImageView colorBar = (ImageView) convertView
+					.findViewById(R.id.colorbar);
+
+			if (i == 0) {
+				colorBar.setImageResource(R.drawable.mental);
+
+			} else if (i == 1) {
+				colorBar.setImageResource(R.drawable.physical);
+
+			} else if (i == 2) {
+				colorBar.setImageResource(R.drawable.social);
+
+			}
+
+			ImageView flagImageView = (ImageView) convertView
+					.findViewById(R.id.flag);
+			Photo p = c.getPhoto();
+			BitmapDrawable b = null;
+			if (p != null) {
+				String path = getActivity().getFileStreamPath(p.getFilename())
+						.getAbsolutePath();
+				b = PictureUtils.getScaledDrawable(getActivity(), path);
+			}
+
+			flagImageView.setImageDrawable(b);
+
+			TextView titleTextView = (TextView) convertView
+					.findViewById(R.id.txt);
+			titleTextView.setText(c.getTitle());
+			TextView dateTextView = (TextView) convertView
+					.findViewById(R.id.cur);
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String currentDateandTime = sdf.format(c.getStartDate());
+
+			dateTextView.setText(currentDateandTime);
+
+			return convertView;
+		}
+	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setHasOptionsMenu(true);
-		// Each row in the list stores country name, currency and flag
-		List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
-		for (int i = 0; i < 5; i++) {
-			HashMap<String, String> hm = new HashMap<String, String>();
-			hm.put("txt", names[i]);
-			hm.put("cur", descriptions[i]);
-			hm.put("flag", Integer.toString(chllgprofiles[i]));
-			hm.put("colorbar", Integer.toString(colorbars[i]));
-			aList.add(hm);
-		}
+		mChallenges = ChallengeLab.get(getActivity()).getChallenges();
+		mAdapter = new ChallengeAdapter(mChallenges);
 
-		// Keys used in Hashmap
-		String[] from = { "flag", "txt", "cur","colorbar" };
-
-		// Ids of views in listview_layout
-		int[] to = { R.id.flag, R.id.txt, R.id.cur, R.id.colorbar };
-
-		// Instantiating an adapter to store each items
-		// R.layout.listview_layout defines the layout of each item
-		SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.chllg_listview, from,
-				to);
-		
 		// Populate list with our static array of titles.
-		setListAdapter(adapter);
+		setListAdapter(mAdapter);
 
 		// Check to see if we have a frame in which to embed the details
 		// fragment directly in the containing UI.
@@ -108,8 +151,9 @@ public class LeftJoinFragment extends ListFragment {
 	}
 
 	/**
-	 * Helper function to show the details of a selected item, either by displaying a fragment in-place in the current
-	 * UI, or starting a whole new activity in which it is displayed.
+	 * Helper function to show the details of a selected item, either by
+	 * displaying a fragment in-place in the current UI, or starting a whole new
+	 * activity in which it is displayed.
 	 */
 	void showDetails(int index) {
 		mPositionChecked = index;
@@ -126,8 +170,12 @@ public class LeftJoinFragment extends ListFragment {
 
 				// Execute a transaction, replacing any existing fragment
 				// with this one inside the frame.
-				getFragmentManager().beginTransaction().replace(R.id.frame_details, df)
-						.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+				getFragmentManager()
+						.beginTransaction()
+						.replace(R.id.frame_details, df)
+						.setTransition(
+								FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+						.commit();
 
 				mPositionShown = index;
 			}
@@ -161,7 +209,7 @@ public class LeftJoinFragment extends ListFragment {
 		switch (item.getItemId()) {
 		case R.id.menu_item_new_challenge:
 			Challenge crime = new Challenge();
-			ChallengeLab.get(getActivity()).addCrime(crime);
+			ChallengeLab.get(getActivity()).addChallenge(crime);
 			Intent i = new Intent(getActivity(), ChallengeActivity.class);
 			startActivity(i);
 			getActivity().finish();

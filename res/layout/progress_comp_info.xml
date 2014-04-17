@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/freq"
+        android:id="@+id/freq_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/progress"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/freq"
+        android:layout_toLeftOf="@+id/freq_text"
         android:text="Frequency:"
         android:textStyle="bold" />
 

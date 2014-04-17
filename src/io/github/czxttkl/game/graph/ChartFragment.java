@@ -1,10 +1,10 @@
 package io.github.czxttkl.game.graph;
 
-import io.github.czxttkl.game.create.Challenge;
 import io.github.czxttkl.game.create.ChallengeActivity;
-import io.github.czxttkl.game.create.ChallengeLab;
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
+import io.github.czxttkl.game.model.Challenge;
+import io.github.czxttkl.game.model.ChallengeLab;
 
 import java.util.ArrayList;
 import java.util.Date;
