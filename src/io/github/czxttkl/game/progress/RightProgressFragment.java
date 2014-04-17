@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import io.github.czxttkl.game.create.CameraFragment;
 import io.github.czxttkl.game.create.ChallengeActivity;
+import io.github.czxttkl.game.graph.GraphActivity;
 import io.github.czxttkl.game.help.HelpViewpager;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 import io.github.czxttkl.game.model.Challenge;
