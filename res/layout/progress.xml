@@ -5,18 +5,18 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <fragment
-        android:id="@+id/fragment_titles"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        class="io.github.czxttkl.game.progress.LeftProgressFragment" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" >
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" 
+        android:layout_marginLeft="20dp">
 
         <CheckBox
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            style="@style/TagStyle"
+            android:button="@xml/custom_checkbox_local"
             android:id="@+id/filter_local"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,28 +24,43 @@
             android:text="Local" />
 
         <CheckBox
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            style="@style/TagStyle"
+            android:button="@xml/custom_checkbox_physical"
             android:id="@+id/filter_physical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_toRightOf="@id/filter_local"
             android:text="Physical" />
 
         <CheckBox
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            style="@style/TagStyle"
+            android:button="@xml/custom_checkbox_mental"
             android:id="@+id/filter_Mental"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_toRightOf="@id/filter_physical"
             android:text="Mental" />
 
         <CheckBox
+            android:paddingLeft="5dp"
+            android:layout_weight="1"
+            style="@style/TagStyle"
+            android:button="@xml/custom_checkbox_social"
             android:id="@+id/filter_social"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_toRightOf="@id/filter_Mental"
             android:text="Social" />
-    </RelativeLayout>
+    </LinearLayout>
+    
+    <fragment
+        android:id="@+id/fragment_titles"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        class="io.github.czxttkl.game.progress.LeftProgressFragment" />
 
 </LinearLayout>

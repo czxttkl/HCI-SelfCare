@@ -43,26 +43,31 @@
             android:name="io.github.czxttkl.game.mainscreen.MainScreenActivity"
             android:label="MainScreen"
             android:screenOrientation="portrait" />
+        
         <activity
             android:name="io.github.czxttkl.game.create.CameraActivity"
             android:label="Camera"
             android:screenOrientation="portrait" >
         </activity>
+        
         <activity
             android:name="io.github.czxttkl.game.progress.ProgressActivity"
             android:label="My Challenges" >
         </activity>
+        
         <activity
             android:name="io.github.czxttkl.game.join.JoinActivity"
             android:label="Browse Challenges" >
         </activity>
+        
         <activity
             android:name="io.github.czxttkl.game.graph.GraphActivity"
-            android:label="Chanllenge Data Per Week" >
+            android:label="Challenges Data Per Week" >
         </activity>
+        
         <activity
             android:name="io.github.czxttkl.game.create.ChallengeActivity"
-            android:label="Challenge"
+            android:label="New Challenge"
             android:screenOrientation="portrait" >
         </activity>
         
