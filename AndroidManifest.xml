@@ -58,17 +58,19 @@
         </activity>
         <activity
             android:name="io.github.czxttkl.game.graph.GraphActivity"
-            android:label="Browse Challenges" >
+            android:label="Chanllenge Data Per Week" >
         </activity>
         <activity
             android:name="io.github.czxttkl.game.create.ChallengeActivity"
             android:label="Challenge"
             android:screenOrientation="portrait" >
         </activity>
+        
         <activity
             android:name="io.github.czxttkl.game.join.JoinDetailActivity"
             android:label="Browse Challenges" >
         </activity>
+        
         <activity
             android:name="io.github.czxttkl.game.progress.ProgressDetailActivity"
             android:label="My Challenges" >
