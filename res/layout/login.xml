@@ -37,9 +37,10 @@
 
     <Button
         android:id="@+id/registerBtn"
+        style="@style/buttonincolor"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_green"
         android:onClick="onClickLogin"
         android:text="Login" />
 
