@@ -58,27 +58,33 @@ public class MainScreenActivity extends Activity {
 	}
 
 	public void onClickNew(View v) {
-		final CharSequence[] items = { "New Challenge", "Upload My Progress" };
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Make your selection");
-		builder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int item) {
-				if (item == 0) {
-					Challenge crime = new Challenge();
-					ChallengeLab.get(getApplicationContext()).addChallenge(crime);
-					Intent i = new Intent();
-	                i.putExtra(ChallengeFragment.EXTRA_CRIME_ID, crime.getId());
-					i.setComponent(new ComponentName(MainScreenActivity.this, ChallengeActivity.class));
-					startActivity(i);
-				} else {
-					Intent i = new Intent();
-					i.setComponent(new ComponentName(MainScreenActivity.this, ProgressActivity.class));
-					startActivity(i);
-				}
-			}
-		});
-		AlertDialog alert = builder.create();
-		alert.show();
+		Challenge crime = new Challenge();
+		ChallengeLab.get(getApplicationContext()).addChallenge(crime);
+		Intent i = new Intent();
+        i.putExtra(ChallengeFragment.EXTRA_CRIME_ID, crime.getId());
+		i.setComponent(new ComponentName(MainScreenActivity.this, ChallengeActivity.class));
+		startActivity(i);
+//		final CharSequence[] items = { "New Challenge", "Upload My Progress" };
+//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//		builder.setTitle("Make your selection");
+//		builder.setItems(items, new DialogInterface.OnClickListener() {
+//			public void onClick(DialogInterface dialog, int item) {
+//				if (item == 0) {
+//					Challenge crime = new Challenge();
+//					ChallengeLab.get(getApplicationContext()).addChallenge(crime);
+//					Intent i = new Intent();
+//	                i.putExtra(ChallengeFragment.EXTRA_CRIME_ID, crime.getId());
+//					i.setComponent(new ComponentName(MainScreenActivity.this, ChallengeActivity.class));
+//					startActivity(i);
+//				} else {
+//					Intent i = new Intent();
+//					i.setComponent(new ComponentName(MainScreenActivity.this, ProgressActivity.class));
+//					startActivity(i);
+//				}
+//			}
+//		});
+	//	AlertDialog alert = builder.create();
+	//	alert.show();
 
 	}
 
