@@ -50,6 +50,8 @@ public class ChartFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.help_on_menu, menu);
+		inflater.inflate(R.menu.new_challenge_list, menu);
+		inflater.inflate(R.menu.new_challenge_text, menu);
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -57,19 +59,28 @@ public class ChartFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
+		case R.id.menu_new_challenge:
+			newChallenge();
+			return true;
+		case R.id.menu_new_challenge_text:
+			newChallenge();
+			return true;
 		case R.id.menu_help:
 			Intent helpIntent = new Intent(getActivity(), HelpViewpager.class);
 			helpIntent.putExtra("page", 3);
 			startActivity(helpIntent);
 			return true;
-		case android.R.id.home:
-			Intent intent = new Intent(getActivity(), MainScreenActivity.class);
-			startActivity(intent);
-			getActivity().finish();
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	private void newChallenge() {
+		Challenge crime = new Challenge();
+		ChallengeLab.get(getActivity()).addChallenge(crime);
+		Intent i = new Intent(getActivity(), ChallengeActivity.class);
+		startActivity(i);
+		getActivity().finish();
 	}
 
 	@Override

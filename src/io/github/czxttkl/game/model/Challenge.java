@@ -20,6 +20,7 @@ public class Challenge {
     private static final String JSON_LOCATION = "location";
     private static final String JSON_PHOTO = "photo";
     private static final String JSON_DETAILS = "details";
+    private static final String JSON_Type = "types";
     
     private UUID mId;
     private String mTitle;
@@ -30,11 +31,17 @@ public class Challenge {
     private String mLocation;
     private Photo mPhoto;
     private String mDetails;
+    private int mType;
+    private boolean isDefault;
+    private int mNumOfImage;
     
     public Challenge() {
         mId = UUID.randomUUID();
         mStartDate = new Date();
         mEndDate = new Date();
+        mType = 0;
+        isDefault = false;
+        mNumOfImage = 0;
     }
 
     public Challenge(JSONObject json) throws JSONException {
@@ -46,7 +53,7 @@ public class Challenge {
         mProgress = json.getInt(JSON_PROGRESS);
         mLocation = json.getString(JSON_LOCATION);
         mDetails = json.getString(JSON_DETAILS);
-       
+        mType = json.getInt(JSON_Type);
         
         if (json.has(JSON_PHOTO))
             mPhoto = new Photo(json.getJSONObject(JSON_PHOTO));
@@ -62,6 +69,7 @@ public class Challenge {
         json.put(JSON_PROGRESS, mProgress);
         json.put(JSON_LOCATION, mLocation);
         json.put(JSON_DETAILS, mDetails);
+        json.put(JSON_Type, mType);
         
         if (mPhoto != null)
             json.put(JSON_PHOTO, mPhoto.toJSON());
@@ -139,5 +147,29 @@ public class Challenge {
 	
 	public String getDetails() {
 		return mDetails;
+	}
+	
+	public void setType(int newType) {
+		mType = newType;
+	}
+	
+	public int getType() {
+		return mType;
+	}
+	
+	public void setDefault() {
+		isDefault = true;
+	}
+	
+	public boolean getDefault() {
+		return isDefault;
+	}
+	
+	public void setNumOfImage(int i) {
+		mNumOfImage = i;
+	}
+	
+	public int getNumOfImage() {
+		return mNumOfImage;
 	}
 }

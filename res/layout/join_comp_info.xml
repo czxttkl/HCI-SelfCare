@@ -94,8 +94,7 @@
             android:id="@+id/join_plus"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:onClick="onClickJoin"
-            android:src="@drawable/plus_space" />
+            android:onClick="onClickJoin" />
 
         <TextView
             android:id="@+id/join_text"
@@ -120,11 +119,6 @@
             android:layout_marginBottom="30dp"
             layout="@layout/chllg_profile1" />
 
-        <include
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            layout="@layout/chllg_profile2" />
     </LinearLayout>
 
 </RelativeLayout>

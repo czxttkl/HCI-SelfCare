@@ -26,6 +26,8 @@ public class MainScreenActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
 		getMenuInflater().inflate(R.menu.help_on_menu, menu);
+		getMenuInflater().inflate(R.menu.new_challenge_list, menu);
+		getMenuInflater().inflate(R.menu.new_challenge_text, menu);
 		return true;
 	}
 
@@ -39,10 +41,11 @@ public class MainScreenActivity extends Activity {
 			helpIntent.putExtra("page", 0);
 			startActivity(helpIntent);
 			return true;
-		case android.R.id.home:
-			Intent intent = new Intent(this, MainScreenActivity.class);
-			startActivity(intent);
-			this.finish();
+		case R.id.menu_new_challenge:
+			newChallenge();
+			return true;
+		case R.id.menu_new_challenge_text:
+			newChallenge();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -57,35 +60,13 @@ public class MainScreenActivity extends Activity {
 		setContentView(R.layout.mainscreen);
 	}
 
-	public void onClickNew(View v) {
+	public void newChallenge() {
 		Challenge crime = new Challenge();
 		ChallengeLab.get(getApplicationContext()).addChallenge(crime);
 		Intent i = new Intent();
         i.putExtra(ChallengeFragment.EXTRA_CRIME_ID, crime.getId());
 		i.setComponent(new ComponentName(MainScreenActivity.this, ChallengeActivity.class));
 		startActivity(i);
-//		final CharSequence[] items = { "New Challenge", "Upload My Progress" };
-//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//		builder.setTitle("Make your selection");
-//		builder.setItems(items, new DialogInterface.OnClickListener() {
-//			public void onClick(DialogInterface dialog, int item) {
-//				if (item == 0) {
-//					Challenge crime = new Challenge();
-//					ChallengeLab.get(getApplicationContext()).addChallenge(crime);
-//					Intent i = new Intent();
-//	                i.putExtra(ChallengeFragment.EXTRA_CRIME_ID, crime.getId());
-//					i.setComponent(new ComponentName(MainScreenActivity.this, ChallengeActivity.class));
-//					startActivity(i);
-//				} else {
-//					Intent i = new Intent();
-//					i.setComponent(new ComponentName(MainScreenActivity.this, ProgressActivity.class));
-//					startActivity(i);
-//				}
-//			}
-//		});
-	//	AlertDialog alert = builder.create();
-	//	alert.show();
-
 	}
 
 	public void onClickJoin(View v) {

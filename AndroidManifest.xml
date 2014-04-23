@@ -28,7 +28,8 @@
         android:icon="@drawable/icon"
         android:label="CoolCare"
         android:largeHeap="true"
-        android:theme="@style/Theme.Sherlock.Light" >
+        android:theme="@style/Theme.Sherlock.Light"
+        android:screenOrientation="portrait" >
         <activity
             android:name="io.github.czxttkl.game.login.LoginActivity"
             android:label="CoolCare"
@@ -41,7 +42,7 @@
         </activity>
         <activity
             android:name="io.github.czxttkl.game.mainscreen.MainScreenActivity"
-            android:label="MainScreen"
+            android:label="CoolCare"
             android:screenOrientation="portrait" />
         
         <activity
@@ -52,17 +53,20 @@
         
         <activity
             android:name="io.github.czxttkl.game.progress.ProgressActivity"
-            android:label="My Challenges" >
+            android:label="My Challenges"
+            android:screenOrientation="portrait" >
         </activity>
         
         <activity
             android:name="io.github.czxttkl.game.join.JoinActivity"
-            android:label="Browse Challenges" >
+            android:label="Browse Challenges"
+            android:screenOrientation="portrait" >
         </activity>
         
         <activity
             android:name="io.github.czxttkl.game.graph.GraphActivity"
-            android:label="Challenges Data Per Week" >
+            android:label="Weekly Data"
+            android:screenOrientation="portrait" >
         </activity>
         
         <activity
@@ -78,7 +82,8 @@
         
         <activity
             android:name="io.github.czxttkl.game.progress.ProgressDetailActivity"
-            android:label="My Challenges" >
+            android:label="My Challenges"
+            android:screenOrientation="portrait" >
         </activity>
         
         <activity

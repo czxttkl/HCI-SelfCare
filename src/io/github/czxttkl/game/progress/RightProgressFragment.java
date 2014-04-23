@@ -2,14 +2,17 @@ package io.github.czxttkl.game.progress;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 
 import io.github.czxttkl.game.create.CameraFragment;
 import io.github.czxttkl.game.create.ChallengeActivity;
 import io.github.czxttkl.game.graph.GraphActivity;
 import io.github.czxttkl.game.help.HelpViewpager;
+import io.github.czxttkl.game.join.LeftJoinFragment;
 import io.github.czxttkl.game.mainscreen.MainScreenActivity;
 import io.github.czxttkl.game.model.Challenge;
 import io.github.czxttkl.game.model.ChallengeLab;
+import io.github.czxttkl.game.model.Photo;
 import io.github.czxttkl.game.model.PictureUtils;
 
 import com.actionbarsherlock.sample.shakespeare.R;
@@ -24,6 +27,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -32,6 +36,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -93,44 +98,43 @@ public class RightProgressFragment extends Fragment {
 			// the view hierarchy; it would just never be used.
 			return null;
 		}
-		RelativeLayout mCompInfoView = (RelativeLayout) getActivity().getLayoutInflater().inflate(
-				R.layout.progress_comp_info, null);
-		ScrollView scroller = new ScrollView(getActivity());
-		TextView text = new TextView(getActivity());
-		int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getActivity().getResources()
-				.getDisplayMetrics());
-		text.setPadding(padding, padding, padding, padding);
-		scroller.addView(mCompInfoView);
-		// scroller.addView(text);
-		// text.setText(Shakespeare.DIALOGUE[getArguments().getInt("index", 0)]);
-		if (getArguments().getString(CameraFragment.EXTRA_PHOTO_FILENAME) != null) {
-			ImageView eventPic = (ImageView) mCompInfoView.findViewById(R.id.chllg_profile1_event);
-			String path = getActivity().getFileStreamPath(
-					getArguments().getString(CameraFragment.EXTRA_PHOTO_FILENAME)).getAbsolutePath();
-			FileInputStream fis;
-			try {
-				fis = new FileInputStream(path);
-				Bitmap b = BitmapFactory.decodeStream(fis);
-				Matrix matrix = new Matrix();  
-				matrix.preRotate(90);  
-				b = Bitmap.createBitmap(b ,0,0, b.getWidth(), b.getHeight(),matrix,true);  
-				eventPic.setImageDrawable(new BitmapDrawable(getResources(), b));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			TextView dateTV = (TextView) mCompInfoView.findViewById(R.id.chllg_profile1_date);
-			String dateTime = getArguments().getString(UpdateFragment.TIME_DATE);
-			dateTV.setText(dateTime);
-			
-			TextView detailTV = (TextView) mCompInfoView.findViewById(R.id.chllg_profile1_detail);
-			String detailText = getArguments().getString(UpdateFragment.DETAIL);
-			detailTV.setText(detailText);
-			
-		}
+		int pos = getArguments().getInt("index");
+		Challenge c = LeftProgressFragment.mAdapter.getItem(pos);
 		
-		EditText replyEditText = (EditText)mCompInfoView.findViewById(R.id.chllg_profile1_reply_edittext);
-		replyEditText.clearFocus(); 
+		RelativeLayout mCompInfoView = (RelativeLayout) getActivity()
+				.getLayoutInflater().inflate(R.layout.join_comp_info, null);
+		
+		TextView startDateTextView = (TextView) mCompInfoView.findViewById(R.id.start_date);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String startDateandTime = sdf.format(c.getStartDate());
+		startDateTextView.setText(startDateandTime);
+		
+		TextView endDateTextView = (TextView) mCompInfoView.findViewById(R.id.end_date);
+		SimpleDateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
+		String endDateandTime = sdf.format(c.getStartDate());
+		endDateTextView.setText(endDateandTime);
+		
+		ProgressBar progressBar = (ProgressBar) mCompInfoView.findViewById(R.id.progressBar1);
+		progressBar.setProgress(c.getProgress());
+		
+		TextView freqTextView = (TextView) mCompInfoView.findViewById(R.id.freq_text);
+		freqTextView.setText(c.getFreq());
+		
+		TextView detailView = (TextView) mCompInfoView.findViewById(R.id.chllg_profile1_detail);
+		detailView.setText(c.getDetails());
+		
+		ScrollView scroller = new ScrollView(getActivity());
+		scroller.addView(mCompInfoView);
+		
+		ImageView imageView = (ImageView) mCompInfoView.findViewById(R.id.chllg_profile1_event);
+		Photo p = c.getPhoto();
+		BitmapDrawable b = null;
+		if (p != null) {
+			String path = getActivity().getFileStreamPath(p.getFilename())
+					.getAbsolutePath();
+			b = PictureUtils.getScaledDrawable(getActivity(), path);
+		}
+		imageView.setImageDrawable(b);
 		
 		return scroller;
 	}

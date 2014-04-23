@@ -57,6 +57,9 @@ public class ChallengeFragment extends Fragment {
 	Button mDateButton;
 	ImageButton mPhotoButton;
 	ImageView mPhotoView;
+	CheckBox mPhysical;
+	CheckBox mMental;
+	CheckBox mSocial;
 
 	Button mCreatChallenge;
 
@@ -244,6 +247,48 @@ public class ChallengeFragment extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				getActivity().finish();
+			}
+		});
+		
+		mPhysical = (CheckBox) v.findViewById(R.id.challenge_physical);
+		mPhysical.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (((CheckBox) v).isChecked()) {
+					mMental.setChecked(false);
+					mSocial.setChecked(false);
+					mChallenge.setType(1);
+				}
+			}
+		});
+		
+		mMental = (CheckBox) v.findViewById(R.id.challenge_mental);
+		mMental.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (((CheckBox) v).isChecked()) {
+					mPhysical.setChecked(false);
+					mSocial.setChecked(false);
+					mChallenge.setType(2);
+				}
+			}
+		});
+		
+		mSocial = (CheckBox) v.findViewById(R.id.challenge_social);
+		mSocial.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (((CheckBox) v).isChecked()) {
+					mMental.setChecked(false);
+					mPhysical.setChecked(false);
+					mChallenge.setType(3);
+				}
 			}
 		});
 

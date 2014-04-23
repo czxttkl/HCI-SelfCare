@@ -28,13 +28,14 @@
             android:layout_height="100dp"
             android:background="@null"
             android:scaleType="fitXY"
-            android:src="@drawable/plus_space" />
+            android:src="@drawable/plus" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload Photo"
+            android:textSize="15dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
@@ -143,7 +144,7 @@
             android:text="PHYSICAL" />
 
         <CheckBox
-            android:id="@+id/challenge_Mental"
+            android:id="@+id/challenge_mental"
             style="@style/TagStyle"
             android:button="@xml/custom_checkbox_mental"
             android:layout_width="0dp"
@@ -158,7 +159,7 @@
             style="@style/TagStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/challenge_Mental"
+            android:layout_toRightOf="@id/challenge_mental"
             android:layout_weight="1"
             android:button="@xml/custom_checkbox_social"
             android:paddingLeft="5dp"

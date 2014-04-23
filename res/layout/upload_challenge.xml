@@ -27,8 +27,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/plus_space" />
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/textView1"
